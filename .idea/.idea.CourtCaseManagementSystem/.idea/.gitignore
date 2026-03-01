@@ -1,15 +1,28 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Rider ignored files
-/modules.xml
-/projectSettingsUpdater.xml
-/contentModel.xml
-/.idea.CourtCaseManagementSystem.iml
-# Ignored default folder with query files
-/queries/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
-# Editor-based HTTP Client requests
-/httpRequests/
+# Build folders
+bin/
+obj/
+
+# Rider / IntelliJ
+.idea/
+*.sln.iml
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Mac
+.DS_Store
+
+# ASP.NET Core
+appsettings.Development.json
+
+# Node (future safe)
+node_modules/
+
+# VS Code
+.vscode/
