@@ -1,0 +1,135 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = CourtCaseManagementSystem.Web
+build_property.RootNamespace = CourtCaseManagementSystem.Web
+build_property.ProjectDir = /Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Assignment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXNzaWdubWVudC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Case/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FzZS9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Case/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FzZS9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Case/History.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FzZS9IaXN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Case/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FzZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Case/Registry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FzZS9SZWdpc3RyeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/CauseList/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F1c2VMaXN0L0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Court/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cnQvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Dashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Document/Library.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRG9jdW1lbnQvTGlicmFyeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Document/Upload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRG9jdW1lbnQvVXBsb2FkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Hearing/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSGVhcmluZy9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Hearing/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSGVhcmluZy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Hearing/Upcoming.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSGVhcmluZy9VcGNvbWluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Judge/AssignedCases.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSnVkZ2UvQXNzaWduZWRDYXNlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Judge/CaseTimeline.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSnVkZ2UvQ2FzZVRpbWVsaW5lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Judge/JudgmentDrafts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSnVkZ2UvSnVkZ21lbnREcmFmdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Report/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0L0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Shared/_Navbar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19OYXZiYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Shared/_Sidebar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19TaWRlYmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-ye6fcpcm13

@@ -1,0 +1,174 @@
+@{
+    var role = Context.Session.GetString("UserRole") ?? "Lawyer";
+}
+
+
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center"
+       asp-controller="Dashboard" asp-action="Index">
+        <div class="sidebar-brand-icon">
+            <i class="fas fa-balance-scale"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Court System</div>
+    </a>
+
+    <hr class="sidebar-divider my-0" />
+
+    <!-- Common Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider" />
+
+    <!-- LAWYER -->
+    @if (role == "Lawyer")
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Case" asp-action="Index">
+                <i class="fas fa-folder"></i>
+                <span>My Cases</span>
+            </a>
+        </li>
+        
+        <hr class="sidebar-divider my-0" />
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Hearing" asp-action="Upcoming">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Upcoming Hearings</span>
+            </a>
+        </li>
+        
+        <hr class="sidebar-divider my-0" />
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Document" asp-action="Library">
+                <i class="fas fa-file-alt"></i>
+                <span>Documents Library</span>
+            </a>
+        </li>
+        
+        <hr class="sidebar-divider my-0" />
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Case" asp-action="History">
+                <i class="fas fa-archive"></i>
+                <span>Case History</span>
+            </a>
+        </li>
+    }
+
+    <!-- CLERK -->
+    @if (role == "Clerk")
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Case" asp-action="Create">
+                <i class="fas fa-plus-circle"></i>
+                <span>Register Case</span>
+            </a>
+        </li>
+        
+        <hr class="sidebar-divider my-0" />
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Case" asp-action="Registry">
+                <i class="fas fa-book"></i>
+                <span>Case Registry</span>
+            </a>
+        </li>
+        
+        <hr class="sidebar-divider my-0" />
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Assignment" asp-action="Index">
+                <i class="fas fa-user-tie"></i>
+                <span>Assign Judge</span>
+            </a>
+        </li>
+        
+        <hr class="sidebar-divider my-0" />
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="CauseList" asp-action="Index">
+                <i class="fas fa-list"></i>
+                <span>Daily Cause List</span>
+            </a>
+        </li>
+    }
+
+    <!-- JUDGE -->
+    @if (role == "Judge")
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Judge" asp-action="AssignedCases">
+                <i class="fas fa-folder-open"></i>
+                <span>Assigned Cases</span>
+            </a>
+        </li>
+        
+        <hr class="sidebar-divider my-0" />
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Hearing" asp-action="Index">
+                <i class="fas fa-calendar"></i>
+                <span>Hearings</span>
+            </a>
+        </li>
+        
+        <hr class="sidebar-divider my-0" />
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Judge" asp-action="JudgmentDrafts">
+                <i class="fas fa-gavel"></i>
+                <span>Judgment Drafts</span>
+            </a>
+        </li>
+        
+        <hr class="sidebar-divider my-0" />
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Judge" asp-action="CaseTimeline">
+                <i class="fas fa-stream"></i>
+                <span>Case Timeline</span>
+            </a>
+        </li>
+    }
+
+    <!-- ADMIN -->
+    @if (role == "Admin")
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="User" asp-action="Index">
+                <i class="fas fa-users-cog"></i>
+                <span>User Management</span>
+            </a>
+        </li>
+
+        <hr class="sidebar-divider my-0" />
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Court" asp-action="Index">
+                <i class="fas fa-university"></i>
+                <span>Courts Management</span>
+            </a>
+        </li>
+        
+        <hr class="sidebar-divider my-0" />
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Report" asp-action="Index">
+                <i class="fas fa-chart-line"></i>
+                <span>Reports & Analytics</span>
+            </a>
+        </li>
+    }
+
+    <hr class="sidebar-divider d-none d-md-block" />
+
+</ul>

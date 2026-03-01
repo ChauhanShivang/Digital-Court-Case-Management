@@ -1,0 +1,109 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+</div>
+
+<!-- Stats Row -->
+<div class="row">
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Total Cases</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">128</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-folder-open fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Pending Hearings</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">24</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar-alt fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Closed Cases</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">89</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Hearing Table -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Upcoming Hearings</h6>
+                <a href="#" class="text-primary">View All</a>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0">
+                        <thead>
+                        <tr>
+                            <th>Case No.</th>
+                            <th>Judge</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>CC-2026-104</td>
+                            <td>Hon. Justice A. Shah</td>
+                            <td>22 Feb 2026</td>
+                            <td><span class="badge badge-warning">Scheduled</span></td>
+                        </tr>
+                        <tr>
+                            <td>CC-2026-091</td>
+                            <td>Hon. Justice R. Mehta</td>
+                            <td>28 Feb 2026</td>
+                            <td><span class="badge badge-info">Awaiting</span></td>
+                        </tr>
+                        <tr>
+                            <td>CC-2026-078</td>
+                            <td>Hon. Justice S. Iyer</td>
+                            <td>04 Mar 2026</td>
+                            <td><span class="badge badge-success">Completed</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

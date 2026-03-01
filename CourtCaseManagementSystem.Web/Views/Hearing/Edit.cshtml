@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Update Hearing";
+}
+
+<h1 class="h3 mb-4 text-gray-800">Update Hearing</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+
+        <form>
+            <div class="form-group">
+                <label>Hearing Date</label>
+                <input type="date" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <select class="form-control">
+                    <option>Scheduled</option>
+                    <option>Completed</option>
+                    <option>Adjourned</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Judge Remarks</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Upload Judgment (PDF)</label>
+                <input type="file" class="form-control-file" />
+            </div>
+
+            <button class="btn btn-primary">Save</button>
+            <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a>
+        </form>
+
+    </div>
+</div>

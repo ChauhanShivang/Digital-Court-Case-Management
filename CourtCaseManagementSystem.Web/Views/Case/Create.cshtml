@@ -1,0 +1,85 @@
+@{
+    ViewData["Title"] = "Register Case";
+}
+
+<h1 class="h3 mb-4 text-gray-800">Register New Case</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+
+        <form>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Case Type</label>
+                    <select class="form-control">
+                        <option>Civil Suit</option>
+                        <option>Criminal Case</option>
+                        <option>Family Dispute</option>
+                        <option>Property Case</option>
+                        <option>Tax Appeal</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Court</label>
+                    <select class="form-control">
+                        <option>Surat District Court</option>
+                        <option>Ahmedabad District Court</option>
+                        <option>Gujarat High Court</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Plaintiff / Complainant</label>
+                    <input type="text" class="form-control" placeholder="Enter plaintiff name" />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Defendant / Respondent</label>
+                    <input type="text" class="form-control" placeholder="Enter defendant name" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Assign Judge</label>
+                    <select class="form-control">
+                        <option>Hon. Justice A. Shah</option>
+                        <option>Hon. Justice R. Mehta</option>
+                        <option>Hon. Justice S. Iyer</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Case Filing Date</label>
+                    <input type="date" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Case Description</label>
+                <textarea class="form-control" rows="3"
+                          placeholder="Brief description of the case"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Upload Initial Documents</label>
+                <input type="file" class="form-control-file" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Register Case
+            </button>
+
+            <a asp-controller="Dashboard" asp-action="Index"
+               class="btn btn-secondary ml-2">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+</div>

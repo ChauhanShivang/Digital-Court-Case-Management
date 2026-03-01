@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Assign Judge";
+}
+
+<h1 class="h3 mb-4 text-gray-800">Assign Judge to Case</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+
+        <form>
+            <div class="form-group">
+                <label>Select Case</label>
+                <select class="form-control">
+                    <option>CC-2026-215 – Patel vs Sharma</option>
+                    <option>CC-2026-198 – Mehta vs State</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Select Judge</label>
+                <select class="form-control">
+                    <option>Hon. Justice A. Shah</option>
+                    <option>Hon. Justice R. Mehta</option>
+                    <option>Hon. Justice S. Iyer</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>First Hearing Date</label>
+                <input type="date" class="form-control" />
+            </div>
+
+            <button class="btn btn-primary">Assign Judge</button>
+        </form>
+
+    </div>
+</div>

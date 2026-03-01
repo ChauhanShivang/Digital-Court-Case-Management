@@ -1,0 +1,149 @@
+@{
+    ViewData["Title"] = "Case Details";
+}
+
+<h1 class="h3 mb-4 text-gray-800">Case Details</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs" id="caseTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab">Overview</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="hearings-tab" data-toggle="tab" href="#hearings" role="tab">Hearings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="documents-tab" data-toggle="tab" href="#documents" role="tab">Documents</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="judgment-tab" data-toggle="tab" href="#judgment" role="tab">Judgment</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab">Timeline</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card-body">
+        <div class="tab-content" id="caseTabContent">
+
+            <!-- Overview Tab -->
+            <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                <p><strong>Case No:</strong> CC-2026-215</p>
+                <p><strong>Case Type:</strong> Civil Suit</p>
+                <p><strong>Party:</strong> You vs Mr. Arvind Patel</p>
+                <p><strong>Court:</strong> Surat District Court</p>
+                <p><strong>Judge:</strong> Hon. Justice A. Shah</p>
+                <p><strong>Status:</strong> <span class="badge badge-warning">Scheduled</span></p>
+            </div>
+
+            <!-- Hearings Tab -->
+            <div class="tab-pane fade" id="hearings" role="tabpanel">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Hearing Date</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#hearingModal">
+                                02 Feb 2026
+                            </a>
+                        </td>
+                        <td><span class="badge badge-success">Completed</span></td>
+                        <td>Argument recorded</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#hearingModal">
+                                10 Mar 2026
+                            </a>
+                        </td>
+                        <td><span class="badge badge-warning">Scheduled</span></td>
+                        <td>Awaiting final argument</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Documents Tab -->
+            <div class="tab-pane fade" id="documents" role="tabpanel">
+                <a class="btn btn-primary btn-sm mb-3" asp-action="Upload" asp-controller="Document">Upload Document</a>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Document</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Download</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Affidavit_01.pdf</td>
+                        <td>Affidavit</td>
+                        <td>15 Jan 2026</td>
+                        <td><a href="#" class="btn btn-outline-primary btn-sm">Download</a></td>
+                    </tr>
+                    <tr>
+                        <td>Evidence_Land.pdf</td>
+                        <td>Evidence</td>
+                        <td>30 Jan 2026</td>
+                        <td><a href="#" class="btn btn-outline-primary btn-sm">Download</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Judgment Tab -->
+            <div class="tab-pane fade" id="judgment" role="tabpanel">
+                <p><strong>Status:</strong> Pending Judgment</p>
+                <p><strong>Remarks:</strong> Final arguments scheduled for next hearing.</p>
+            </div>
+            
+            <div class="tab-pane fade" id="timeline" role="tabpanel">
+                <ul class="timeline">
+                    <li>
+                        <span class="text-primary font-weight-bold">10 Jan 2026</span>
+                        <p>Case Filed by Lawyer</p>
+                    </li>
+                    <li>
+                        <span class="text-primary font-weight-bold">18 Jan 2026</span>
+                        <p>Case Assigned to Hon. Justice A. Shah</p>
+                    </li>
+                    <li>
+                        <span class="text-primary font-weight-bold">02 Feb 2026</span>
+                        <p>First Hearing Completed</p>
+                    </li>
+                    <li>
+                        <span class="text-primary font-weight-bold">10 Mar 2026</span>
+                        <p>Next Hearing Scheduled</p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="hearingModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Hearing Details</h5>
+                <button class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Judge:</strong> Hon. Justice A. Shah</p>
+                <p><strong>Court:</strong> Surat District Court</p>
+                <p><strong>Status:</strong> Scheduled</p>
+                <p><strong>Remarks:</strong> Final arguments</p>
+            </div>
+        </div>
+    </div>
+</div>

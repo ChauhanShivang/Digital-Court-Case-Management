@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<h1 class="h3 mb-4 text-gray-800">User Management</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3">
+    <i class="fas fa-user-plus"></i> Add New User
+</a>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Adv. Rahul Mehta</td>
+                <td>rahul.mehta@gmail.com</td>
+                <td>Lawyer</td>
+                <td><span class="badge badge-success">Active</span></td>
+                <td>
+                    <a class="btn btn-sm btn-warning">Edit</a>
+                    <a class="btn btn-sm btn-danger">Disable</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Hon. Justice A. Shah</td>
+                <td>justice.shah@gov.in</td>
+                <td>Judge</td>
+                <td><span class="badge badge-success">Active</span></td>
+                <td>
+                    <a class="btn btn-sm btn-warning">Edit</a>
+                    <a class="btn btn-sm btn-danger">Disable</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Clerk Suresh Patel</td>
+                <td>suresh.patel@court.in</td>
+                <td>Court Clerk</td>
+                <td><span class="badge badge-secondary">Inactive</span></td>
+                <td>
+                    <a class="btn btn-sm btn-warning">Edit</a>
+                    <a class="btn btn-sm btn-success">Enable</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

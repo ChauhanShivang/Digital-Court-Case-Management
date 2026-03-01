@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "My Cases";
+}
+
+<h1 class="h3 mb-4 text-gray-800">My Cases</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-body table-responsive">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th>Case No.</th>
+                <th>Case Type</th>
+                <th>Opponent</th>
+                <th>Court</th>
+                <th>Judge</th>
+                <th>Next Hearing</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a asp-action="Details" asp-controller="Case">CC-2026-215</a></td>
+                <td>Civil Suit</td>
+                <td>Mr. Arvind Patel</td>
+                <td>Surat District Court</td>
+                <td>Hon. Justice A. Shah</td>
+                <td>10 Mar 2026</td>
+                <td><span class="badge badge-warning">Scheduled</span></td>
+            </tr>
+            <tr>
+                <td><a asp-action="Details" asp-controller="Case">CR-2026-091</a></td>
+                <td>Criminal Case</td>
+                <td>State of Gujarat</td>
+                <td>Gujarat High Court</td>
+                <td>Hon. Justice R. Mehta</td>
+                <td>18 Mar 2026</td>
+                <td><span class="badge badge-info">Awaiting</span></td>
+            </tr>
+            <tr>
+                <td><a asp-action="Details" asp-controller="Case">FS-2025-330</a></td>
+                <td>Family Dispute</td>
+                <td>Mrs. Nisha Desai</td>
+                <td>Ahmedabad District Court</td>
+                <td>Hon. Justice S. Iyer</td>
+                <td>-</td>
+                <td><span class="badge badge-success">Completed</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

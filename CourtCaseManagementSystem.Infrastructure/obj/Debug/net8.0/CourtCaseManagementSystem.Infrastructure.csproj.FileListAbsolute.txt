@@ -1,0 +1,17 @@
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/bin/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.deps.json
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/bin/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.runtimeconfig.json
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/bin/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.dll
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/bin/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.pdb
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/bin/Debug/net8.0/CourtCaseManagementSystem.Core.dll
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/bin/Debug/net8.0/CourtCaseManagementSystem.Core.pdb
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.csproj.AssemblyReference.cache
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.AssemblyInfoInputs.cache
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.AssemblyInfo.cs
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCas.631D048C.Up2Date
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.dll
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/refint/CourtCaseManagementSystem.Infrastructure.dll
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.pdb
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.genruntimeconfig.cache
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/ref/CourtCaseManagementSystem.Infrastructure.dll
