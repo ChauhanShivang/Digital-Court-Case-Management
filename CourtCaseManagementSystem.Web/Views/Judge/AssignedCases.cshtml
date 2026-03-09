@@ -1,37 +1,84 @@
+@model List<CourtCaseManagementSystem.Core.Entities.Case>
+
 @{
     ViewData["Title"] = "Assigned Cases";
 }
 
 <h1 class="h3 mb-4 text-gray-800">Assigned Cases</h1>
 
-<div class="card shadow mb-4">
-    <div class="card-body">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>Case No</th>
-                <th>Case Title</th>
-                <th>Court</th>
-                <th>Priority</th>
-                <th>Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>CC-2026-215</td>
-                <td>Patel vs Sharma</td>
-                <td>Surat District Court</td>
-                <td><span class="badge badge-danger">High</span></td>
-                <td><span class="badge badge-warning">Ongoing</span></td>
-            </tr>
-            <tr>
-                <td>CC-2026-198</td>
-                <td>Mehta vs State</td>
-                <td>Gujarat High Court</td>
-                <td><span class="badge badge-info">Normal</span></td>
-                <td><span class="badge badge-info">Scheduled</span></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<h2>Assigned Cases</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Case No</th>
+        <th>Title</th>
+        <th>Court</th>
+        <th>Lawyer</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.CaseNumber</td>
+            <td>@c.Title</td>
+            <td>@c.Court?.Name</td>
+            <td>@c.Lawyer?.FullName</td>
+
+            <!-- Priority -->
+            <td>
+                @if (c.PriorityScore >= 8)
+                {
+                    <span class="badge badge-danger">High</span>
+                }
+                else if (c.PriorityScore >= 5)
+                {
+                    <span class="badge badge-warning">Medium</span>
+                }
+                else
+                {
+                    <span class="badge badge-secondary">Low</span>
+                }
+            </td>
+
+            <!-- Status -->
+            <td>
+                @if (c.Status == "Registered")
+                {
+                    <span class="badge badge-info">Registered</span>
+                }
+                else if (c.Status == "Scheduled")
+                {
+                    <span class="badge badge-primary">Scheduled</span>
+                }
+                else if (c.Status == "Active")
+                {
+                    <span class="badge badge-warning">Active</span>
+                }
+                else if (c.Status == "Closed")
+                {
+                    <span class="badge badge-success">Closed</span>
+                }
+                else
+                {
+                    <span class="badge badge-light">@c.Status</span>
+                }
+            </td>
+            
+            @* Action *@
+            <td>
+                <a asp-controller="Judge"
+                   asp-action="CaseTimeline"
+                   asp-route-caseId="@c.Id"
+                   class="btn btn-sm btn-info">
+                    Timeline
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

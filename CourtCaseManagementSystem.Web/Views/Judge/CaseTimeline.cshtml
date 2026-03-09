@@ -1,24 +1,18 @@
-@{
-    ViewData["Title"] = "Case Timeline";
-}
+@model List<CourtCaseManagementSystem.Core.Entities.CaseEvent>
 
-<h1 class="h3 mb-4 text-gray-800">Case Timeline</h1>
+<h2>Case Timeline</h2>
 
-<div class="card shadow mb-4">
-    <div class="card-body">
-        <ul class="timeline">
-            <li>
-                <strong>10 Jan 2026:</strong> Case Filed
-            </li>
-            <li>
-                <strong>18 Jan 2026:</strong> Assigned to Judge
-            </li>
-            <li>
-                <strong>02 Feb 2026:</strong> First Hearing Completed
-            </li>
-            <li>
-                <strong>10 Mar 2026:</strong> Final Arguments Scheduled
-            </li>
-        </ul>
-    </div>
-</div>
+<ul class="timeline">
+
+    @foreach (var e in Model)
+    {
+        <li class="mb-3">
+            <strong>@e.EventType</strong><br/>
+            @e.Description<br/>
+            <small class="text-muted">
+                @e.EventDate.ToString("dd MMM yyyy HH:mm")
+            </small>
+        </li>
+    }
+
+</ul>

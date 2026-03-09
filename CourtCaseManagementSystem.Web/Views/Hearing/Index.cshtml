@@ -1,34 +1,35 @@
-@{
-    ViewData["Title"] = "My Hearings";
-}
+@model List<CourtCaseManagementSystem.Core.Entities.Hearing>
 
-<h1 class="h3 mb-4 text-gray-800">Assigned Hearings</h1>
+<h2>My Hearings</h2>
 
-<div class="card shadow mb-4">
-    <div class="card-body">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>Case No</th>
-                <th>Case Title</th>
-                <th>Court</th>
-                <th>Hearing Date</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>CC-2026-215</td>
-                <td>Patel vs Sharma</td>
-                <td>Surat District Court</td>
-                <td>10 Mar 2026</td>
-                <td><span class="badge badge-warning">Scheduled</span></td>
-                <td>
-                    <a asp-action="Edit" class="btn btn-sm btn-primary">Update</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Case No</th>
+        <th>Court</th>
+        <th>Lawyer</th>
+        <th>Hearing Date</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var h in Model)
+    {
+        <tr>
+            <td>@h.Case?.CaseNumber</td>
+            <td>@h.Case?.Court?.Name</td>
+            <td>@h.Case?.Lawyer?.FullName</td>
+            <td>@h.HearingDate.ToLocalTime().ToString("dd MMM yyyy")</td>
+            <td>@h.Status</td>
+            <td>
+                <a asp-action="Edit"
+                   asp-route-id="@h.Id"
+                   class="btn btn-sm btn-primary">
+                    Update
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

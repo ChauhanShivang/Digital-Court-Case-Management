@@ -1,40 +1,41 @@
-@{
-    ViewData["Title"] = "Update Hearing";
-}
+@model CourtCaseManagementSystem.Core.Entities.Hearing
 
-<h1 class="h3 mb-4 text-gray-800">Update Hearing</h1>
+<h2>Update Hearing</h2>
 
-<div class="card shadow mb-4">
-    <div class="card-body">
+<form method="post">
 
-        <form>
-            <div class="form-group">
-                <label>Hearing Date</label>
-                <input type="date" class="form-control" />
-            </div>
+    <input type="hidden" asp-for="Id"/>
 
-            <div class="form-group">
-                <label>Status</label>
-                <select class="form-control">
-                    <option>Scheduled</option>
-                    <option>Completed</option>
-                    <option>Adjourned</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Judge Remarks</label>
-                <textarea class="form-control" rows="3"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Upload Judgment (PDF)</label>
-                <input type="file" class="form-control-file" />
-            </div>
-
-            <button class="btn btn-primary">Save</button>
-            <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a>
-        </form>
-
+    <div class="form-group">
+        <label>Case</label>
+        <input class="form-control"
+               value="@Model.Case?.CaseNumber - @Model.Case?.Title"
+               disabled />
     </div>
-</div>
+
+    <div class="form-group mt-3">
+        <label>Hearing Date</label>
+        <input class="form-control"
+               value="@Model.HearingDate.ToShortDateString()"
+               disabled />
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Status</label>
+        <select asp-for="Status" class="form-control">
+            <option>Scheduled</option>
+            <option>Completed</option>
+            <option>Adjourned</option>
+        </select>
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Remarks</label>
+        <textarea asp-for="Remarks" class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-primary mt-4">
+        Update Hearing
+    </button>
+
+</form>

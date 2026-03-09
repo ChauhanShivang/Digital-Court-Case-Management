@@ -107,3 +107,35 @@
         </div>
     </div>
 </div>
+
+@if (Context.Session.GetString("UserRole") == "Judge")
+{
+    <div class="card shadow mb-4">
+        <div class="card-header">
+            <h5>My Assigned Cases</h5>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Case No</th>
+                    <th>Title</th>
+                    <th>Court</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var c in ViewBag.AssignedCases)
+                {
+                    <tr>
+                        <td>@c.CaseNumber</td>
+                        <td>@c.Title</td>
+                        <td>@c.Court?.Name</td>
+                        <td>@c.Status</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

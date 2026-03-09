@@ -22,6 +22,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXNzaWdubWVudC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Case/Assign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FzZS9Bc3NpZ24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/Views/Case/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FzZS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

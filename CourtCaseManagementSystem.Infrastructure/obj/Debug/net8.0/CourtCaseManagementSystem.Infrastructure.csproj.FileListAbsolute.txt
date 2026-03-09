@@ -9,6 +9,7 @@
 /Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.AssemblyInfoInputs.cache
 /Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.AssemblyInfo.cs
 /Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.sourcelink.json
 /Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCas.631D048C.Up2Date
 /Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/CourtCaseManagementSystem.Infrastructure.dll
 /Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Infrastructure/obj/Debug/net8.0/refint/CourtCaseManagementSystem.Infrastructure.dll

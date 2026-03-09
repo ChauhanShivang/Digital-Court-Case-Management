@@ -1,0 +1,80 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Court Case Management - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="~/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body style="background: linear-gradient(135deg, #1c3faa, #0d1b2a); min-height:100vh;">
+
+<div class="container d-flex align-items-center justify-content-center" style="min-height:100vh;">
+    <div class="row w-100 justify-content-center">
+        <div class="col-lg-5">
+
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-4">
+                        <i class="fas fa-balance-scale fa-3x text-primary mb-3"></i>
+                        <h3 class="font-weight-bold">Court Case Management</h3>
+                        <p class="text-muted small">Secure Judicial Workflow Platform</p>
+                    </div>
+
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger text-center">
+                            @ViewBag.Error
+                        </div>
+                    }
+
+                    <form method="post">
+
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input name="email" class="form-control form-control-user"
+                                   placeholder="Enter email..." required />
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label>Password</label>
+                            <input name="password" type="password"
+                                   class="form-control form-control-user"
+                                   placeholder="Enter password..." required />
+                        </div>
+
+                        <button class="btn btn-primary btn-user btn-block mt-4 shadow-sm"
+                                type="submit">
+                            <i class="fas fa-sign-in-alt mr-2"></i> Login
+                        </button>
+
+                    </form>
+
+                    <hr />
+
+                    <div class="small text-muted">
+                        <strong>Demo Credentials:</strong><br />
+                        Admin: admin@court.com / admin123 <br />
+                        Judge: judge@court.com / judge123 <br />
+                        Lawyer: lawyer@court.com / lawyer123 <br />
+                        Clerk: clerk@court.com / clerk123
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="text-center mt-4 text-white-50 small">
+                © 2026 Court Case Management System
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

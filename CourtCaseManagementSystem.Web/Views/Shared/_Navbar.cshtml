@@ -1,45 +1,19 @@
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-<ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto">
 
-    <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="roleDropdown"
-           role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                Role: @(Context.Session.GetString("UserRole") ?? "Lawyer")
+        <li class="nav-item">
+            <span class="nav-link text-gray-600 small">
+                @Context.Session.GetString("UserRole")
             </span>
+        </li>
 
-            <img class="img-profile rounded-circle"
-                 src="~/img/undraw_profile.svg"
-                 style="width: 32px; height: 32px;" />
-        </a>
-
-        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-             aria-labelledby="roleDropdown">
-
-            <a class="dropdown-item"
-               asp-controller="Role" asp-action="Switch" asp-route-role="Admin">
-                Admin
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Auth" asp-action="Logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
             </a>
+        </li>
 
-            <a class="dropdown-item"
-               asp-controller="Role" asp-action="Switch" asp-route-role="Judge">
-                Judge
-            </a>
-
-            <a class="dropdown-item"
-               asp-controller="Role" asp-action="Switch" asp-route-role="Lawyer">
-                Lawyer
-            </a>
-
-            <a class="dropdown-item"
-               asp-controller="Role" asp-action="Switch" asp-route-role="Clerk">
-                Court Clerk
-            </a>
-        </div>
-    </li>
-
-</ul>
+    </ul>
 
 </nav>

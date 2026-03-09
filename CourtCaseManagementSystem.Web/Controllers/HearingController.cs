@@ -1,22 +1,67 @@
+using CourtCaseManagementSystem.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
-
-namespace CourtCaseManagementSystem.Web.Controllers;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using CourtCaseManagementSystem.Core.Entities;
 
 public class HearingController : Controller
 {
-    // GET
-    public IActionResult Index()
+    private readonly ApplicationDbContext _context;
+
+    public HearingController(ApplicationDbContext context)
     {
-        return View();
+        _context = context;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var userId = HttpContext.Session.GetInt32("UserId");
+
+        var hearings = await _context.Hearings
+            .Include(h => h.Case)
+            .ThenInclude(c => c.Court)
+            .Include(h => h.Case)
+            .ThenInclude(c => c.Lawyer)
+            .Where(h => h.Case.JudgeAssignments
+                .Any(j => j.JudgeId == userId))
+            .ToListAsync();
+
+        return View(hearings);
     }
     
-    public IActionResult Edit()
+    public async Task<IActionResult> Edit(int id)
     {
-        return View();
+        var hearing = await _context.Hearings
+            .Include(h => h.Case)
+            .ThenInclude(c => c.Court)
+            .FirstOrDefaultAsync(h => h.Id == id);
+
+        if (hearing == null)
+            return NotFound();
+
+        return View(hearing);
     }
     
-    public IActionResult Upcoming()
+    [HttpPost]
+    public async Task<IActionResult> Edit(Hearing hearing)
     {
-        return View();
+        var existing = await _context.Hearings.FindAsync(hearing.Id);
+
+        if (existing == null)
+            return NotFound();
+
+        existing.Status = hearing.Status;
+        existing.Remarks = hearing.Remarks;
+        
+        _context.CaseEvents.Add(new CaseEvent
+        {
+            CaseId = existing.CaseId,
+            EventType = "Hearing Updated",
+            Description = $"Hearing marked as {existing.Status}. Remarks: {existing.Remarks}"
+        });
+        
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("Index");
     }
 }

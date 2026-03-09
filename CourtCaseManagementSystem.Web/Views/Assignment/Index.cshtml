@@ -7,21 +7,28 @@
 <div class="card shadow mb-4">
     <div class="card-body">
 
-        <form>
+        <form method="post" asp-action="Assign">
             <div class="form-group">
                 <label>Select Case</label>
-                <select class="form-control">
-                    <option>CC-2026-215 – Patel vs Sharma</option>
-                    <option>CC-2026-198 – Mehta vs State</option>
+                <select name="caseId" class="form-control">
+                    @foreach (var c in ViewBag.Cases)
+                    {
+                        <option value="@c.Id">
+                            @c.CaseNumber - @c.Title
+                        </option>
+                    }
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Select Judge</label>
-                <select class="form-control">
-                    <option>Hon. Justice A. Shah</option>
-                    <option>Hon. Justice R. Mehta</option>
-                    <option>Hon. Justice S. Iyer</option>
+                <select name="judgeId" class="form-control">
+                    @foreach (var j in ViewBag.Judges)
+                    {
+                        <option value="@j.Id">
+                            @j.FullName
+                        </option>
+                    }
                 </select>
             </div>
 
