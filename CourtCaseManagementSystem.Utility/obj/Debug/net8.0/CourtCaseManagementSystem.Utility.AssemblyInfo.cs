@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CourtCaseManagementSystem.Utility")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5df6e09244fde9d99451ad05876ac946330a686")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+019e39ff2359a4b4993320d086bd49ca89b4179c")]
 [assembly: System.Reflection.AssemblyProductAttribute("CourtCaseManagementSystem.Utility")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CourtCaseManagementSystem.Utility")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -131,4 +131,21 @@ public class CaseController : BaseController
 
         return RedirectToAction("Index");
     }
+    
+    public async Task<IActionResult> Details(int id)
+    {
+        var caseData = await _context.Cases
+            .Include(c => c.Court)
+            .Include(c => c.Lawyer)
+            .Include(c => c.Documents)
+            .Include(c => c.Hearings)
+            .Include(c => c.CaseEvents)
+            .Include(c => c.Judgment)
+            .FirstOrDefaultAsync(c => c.Id == id);
+
+        if (caseData == null)
+            return NotFound();
+
+        return View(caseData);
+    }
 }

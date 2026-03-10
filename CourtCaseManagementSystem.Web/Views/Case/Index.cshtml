@@ -23,7 +23,13 @@
             @foreach (var c in Model)
             {
                 <tr>
-                    <td>@c.CaseNumber</td>
+                    <td>
+                        <a asp-controller="Case"
+                           asp-action="Details"
+                           asp-route-id="@c.Id">
+                            @c.CaseNumber
+                        </a>
+                    </td>
                     <td>@c.CaseType</td>
                     <td>@c.Title</td>
                     <td>@c.Court?.Name</td>

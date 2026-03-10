@@ -13,6 +13,8 @@ public class Document
     public string FileName { get; set; } = null!;
     public string FilePath { get; set; } = null!;
     public string DocumentType { get; set; } = null!;
+    
+    public string StoredFileName { get; set; } = null!;
 
     public DateTime UploadedAt { get; set; } = DateTime.UtcNow;
 }

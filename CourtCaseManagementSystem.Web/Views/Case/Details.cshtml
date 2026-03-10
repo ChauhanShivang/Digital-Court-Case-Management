@@ -1,3 +1,4 @@
+@model CourtCaseManagementSystem.Core.Entities.Case
 @{
     ViewData["Title"] = "Case Details";
 }
@@ -30,12 +31,29 @@
 
             <!-- Overview Tab -->
             <div class="tab-pane fade show active" id="overview" role="tabpanel">
-                <p><strong>Case No:</strong> CC-2026-215</p>
-                <p><strong>Case Type:</strong> Civil Suit</p>
-                <p><strong>Party:</strong> You vs Mr. Arvind Patel</p>
-                <p><strong>Court:</strong> Surat District Court</p>
-                <p><strong>Judge:</strong> Hon. Justice A. Shah</p>
-                <p><strong>Status:</strong> <span class="badge badge-warning">Scheduled</span></p>
+                <p><strong>Case No:</strong> @Model.CaseNumber</p>
+                <p><strong>Title:</strong> @Model.Title</p>
+                <p><strong>Case Type:</strong> @Model.CaseType</p>
+                <p><strong>Court:</strong> @Model.Court?.Name</p>
+                <p><strong>Lawyer:</strong> @Model.Lawyer?.FullName</p>
+
+                <p>
+                    <strong>Status:</strong>
+
+                    @if (Model.Status == "Registered")
+                    {
+                        <span class="badge badge-info">Registered</span>
+                    }
+                    else if (Model.Status == "Active")
+                    {
+                        <span class="badge badge-warning">Active</span>
+                    }
+                    else if (Model.Status == "Closed")
+                    {
+                        <span class="badge badge-success">Closed</span>
+                    }
+
+                </p>
             </div>
 
             <!-- Hearings Tab -->
@@ -49,31 +67,65 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            <a href="#" data-toggle="modal" data-target="#hearingModal">
-                                02 Feb 2026
-                            </a>
-                        </td>
-                        <td><span class="badge badge-success">Completed</span></td>
-                        <td>Argument recorded</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#" data-toggle="modal" data-target="#hearingModal">
-                                10 Mar 2026
-                            </a>
-                        </td>
-                        <td><span class="badge badge-warning">Scheduled</span></td>
-                        <td>Awaiting final argument</td>
-                    </tr>
+
+                    @if (Model.Hearings != null && Model.Hearings.Any())
+                    {
+                        foreach (var h in Model.Hearings)
+                        {
+                            <tr>
+                                <td>@h.HearingDate.ToString("dd MMM yyyy")</td>
+                                <td>@h.Status</td>
+                                <td>@h.Remarks</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                No hearings scheduled
+                            </td>
+                        </tr>
+                    }
+
                     </tbody>
                 </table>
             </div>
 
             <!-- Documents Tab -->
             <div class="tab-pane fade" id="documents" role="tabpanel">
-                <a class="btn btn-primary btn-sm mb-3" asp-action="Upload" asp-controller="Document">Upload Document</a>
+                <!-- Upload Form -->
+                <form asp-controller="Document"
+                      asp-action="Upload"
+                      method="post"
+                      enctype="multipart/form-data"
+                      class="mb-3">
+
+                    <input type="hidden" name="caseId" value="@Model.Id"/>
+
+                    <div class="form-group">
+                        <label>Document Type</label>
+                        <select name="documentType" class="form-control">
+                            <option>Evidence</option>
+                            <option>Affidavit</option>
+                            <option>Petition</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mt-2">
+                        <input type="file" name="file" class="form-control"/>
+                    </div>
+
+                    <button class="btn btn-primary mt-2">
+                        Upload Document
+                    </button>
+
+                </form>
+
+
+                <!-- Documents Table -->
+
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -83,47 +135,79 @@
                         <th>Download</th>
                     </tr>
                     </thead>
+
                     <tbody>
-                    <tr>
-                        <td>Affidavit_01.pdf</td>
-                        <td>Affidavit</td>
-                        <td>15 Jan 2026</td>
-                        <td><a href="#" class="btn btn-outline-primary btn-sm">Download</a></td>
-                    </tr>
-                    <tr>
-                        <td>Evidence_Land.pdf</td>
-                        <td>Evidence</td>
-                        <td>30 Jan 2026</td>
-                        <td><a href="#" class="btn btn-outline-primary btn-sm">Download</a></td>
-                    </tr>
+
+                    @if (Model.Documents != null && Model.Documents.Any())
+                    {
+                        foreach (var doc in Model.Documents)
+                        {
+                            <tr>
+                                <td>@doc.FileName</td>
+                                <td>@doc.DocumentType</td>
+                                <td>@doc.UploadedAt.ToString("dd MMM yyyy")</td>
+
+                                <td>
+                                    <a asp-controller="Document"
+                                       asp-action="Download"
+                                       asp-route-id="@doc.Id"
+                                       class="btn btn-outline-primary btn-sm">
+
+                                        Download
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                No documents uploaded yet
+                            </td>
+                        </tr>
+                    }
+
                     </tbody>
+
                 </table>
             </div>
 
             <!-- Judgment Tab -->
             <div class="tab-pane fade" id="judgment" role="tabpanel">
-                <p><strong>Status:</strong> Pending Judgment</p>
-                <p><strong>Remarks:</strong> Final arguments scheduled for next hearing.</p>
+                @if (Model.Judgment != null)
+                {
+                    <p><strong>Status:</strong> @Model.Judgment.Status</p>
+                    <p>@Model.Judgment.Content</p>
+                }
+                else
+                {
+                    <p>No judgment uploaded yet.</p>
+                }
             </div>
             
             <div class="tab-pane fade" id="timeline" role="tabpanel">
                 <ul class="timeline">
-                    <li>
-                        <span class="text-primary font-weight-bold">10 Jan 2026</span>
-                        <p>Case Filed by Lawyer</p>
-                    </li>
-                    <li>
-                        <span class="text-primary font-weight-bold">18 Jan 2026</span>
-                        <p>Case Assigned to Hon. Justice A. Shah</p>
-                    </li>
-                    <li>
-                        <span class="text-primary font-weight-bold">02 Feb 2026</span>
-                        <p>First Hearing Completed</p>
-                    </li>
-                    <li>
-                        <span class="text-primary font-weight-bold">10 Mar 2026</span>
-                        <p>Next Hearing Scheduled</p>
-                    </li>
+
+                    @if (Model.CaseEvents != null && Model.CaseEvents.Any())
+                    {
+                        foreach (var e in Model.CaseEvents.OrderByDescending(e => e.EventDate))
+                        {
+                            <li>
+                                <span class="text-primary font-weight-bold">
+                                    @e.EventDate.ToString("dd MMM yyyy")
+                                </span>
+
+                                <p>@e.EventType</p>
+                                <small>@e.Description</small>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li>No timeline events yet</li>
+                    }
+
                 </ul>
             </div>
 

@@ -142,7 +142,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         {
                             Id = 1,
                             CourtType = "District",
-                            CreatedAt = new DateTime(2026, 3, 9, 16, 48, 52, 450, DateTimeKind.Utc).AddTicks(3270),
+                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4320),
                             IsActive = true,
                             Location = "Surat",
                             Name = "Surat District Court"
@@ -151,7 +151,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         {
                             Id = 2,
                             CourtType = "District",
-                            CreatedAt = new DateTime(2026, 3, 9, 16, 48, 52, 450, DateTimeKind.Utc).AddTicks(3270),
+                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4320),
                             IsActive = true,
                             Location = "Ahmedabad",
                             Name = "Ahmedabad District Court"
@@ -160,7 +160,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         {
                             Id = 3,
                             CourtType = "High Court",
-                            CreatedAt = new DateTime(2026, 3, 9, 16, 48, 52, 450, DateTimeKind.Utc).AddTicks(3280),
+                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4320),
                             IsActive = true,
                             Location = "Ahmedabad",
                             Name = "Gujarat High Court"
@@ -187,6 +187,10 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StoredFileName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -298,7 +302,8 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CaseId");
+                    b.HasIndex("CaseId")
+                        .IsUnique();
 
                     b.HasIndex("JudgeId");
 
@@ -331,25 +336,25 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 3, 9, 16, 48, 52, 450, DateTimeKind.Utc).AddTicks(3180),
+                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4200),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 3, 9, 16, 48, 52, 450, DateTimeKind.Utc).AddTicks(3180),
+                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4200),
                             Name = "Judge"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 3, 9, 16, 48, 52, 450, DateTimeKind.Utc).AddTicks(3180),
+                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4200),
                             Name = "Lawyer"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 3, 9, 16, 48, 52, 450, DateTimeKind.Utc).AddTicks(3180),
+                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4200),
                             Name = "Clerk"
                         });
                 });
@@ -393,7 +398,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 3, 9, 16, 48, 52, 450, DateTimeKind.Utc).AddTicks(3260),
+                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4300),
                             Email = "admin@court.com",
                             FullName = "System Admin",
                             IsActive = true,
@@ -403,7 +408,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 3, 9, 16, 48, 52, 450, DateTimeKind.Utc).AddTicks(3260),
+                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4300),
                             Email = "judge@court.com",
                             FullName = "Justice A. Shah",
                             IsActive = true,
@@ -413,7 +418,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 3, 9, 16, 48, 52, 450, DateTimeKind.Utc).AddTicks(3260),
+                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4300),
                             Email = "lawyer@court.com",
                             FullName = "Adv. Rohan Mehta",
                             IsActive = true,
@@ -423,7 +428,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 3, 9, 16, 48, 52, 450, DateTimeKind.Utc).AddTicks(3260),
+                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4300),
                             Email = "clerk@court.com",
                             FullName = "Court Clerk Priya Patel",
                             IsActive = true,
@@ -520,8 +525,8 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
             modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.Judgment", b =>
                 {
                     b.HasOne("CourtCaseManagementSystem.Core.Entities.Case", "Case")
-                        .WithMany()
-                        .HasForeignKey("CaseId")
+                        .WithOne("Judgment")
+                        .HasForeignKey("CourtCaseManagementSystem.Core.Entities.Judgment", "CaseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -556,6 +561,8 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                     b.Navigation("Hearings");
 
                     b.Navigation("JudgeAssignments");
+
+                    b.Navigation("Judgment");
                 });
 
             modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.Court", b =>

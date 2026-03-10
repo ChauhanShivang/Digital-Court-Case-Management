@@ -28,4 +28,6 @@ public class Case
     public ICollection<Document>? Documents { get; set; }
     public ICollection<CaseEvent>? CaseEvents { get; set; }
     public ICollection<JudgeAssignment>? JudgeAssignments { get; set; }
+    
+    public Judgment? Judgment { get; set; }
 }
