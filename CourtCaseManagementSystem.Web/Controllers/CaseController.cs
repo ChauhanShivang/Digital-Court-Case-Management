@@ -1,4 +1,5 @@
 using CourtCaseManagementSystem.Core.Entities;
+using CourtCaseManagementSystem.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CourtCaseManagementSystem.Infrastructure.Data;
@@ -8,10 +9,12 @@ namespace CourtCaseManagementSystem.Web.Controllers;
 public class CaseController : BaseController
 {
     private readonly ApplicationDbContext _context;
+    private readonly CasePriorityService _priorityService;
 
-    public CaseController(ApplicationDbContext context)
+    public CaseController(ApplicationDbContext context, CasePriorityService priorityService)
     {
         _context = context;
+        _priorityService = priorityService;
     }
 
     public async Task<IActionResult> Index()
@@ -34,7 +37,9 @@ public class CaseController : BaseController
             query = query
                 .Include(c => c.Hearings);
 
-        var cases = await query.ToListAsync();
+        var cases = await query
+            .OrderByDescending(c => c.PriorityScore)
+            .ToListAsync();
 
         return View(cases);
     }
@@ -67,6 +72,8 @@ public class CaseController : BaseController
         model.FiledDate = DateTime.UtcNow;
         model.CreatedAt = DateTime.UtcNow;
 
+        model.PriorityScore = _priorityService.CalculatePriority(model);
+        
         _context.Cases.Add(model);
         await _context.SaveChangesAsync();
         

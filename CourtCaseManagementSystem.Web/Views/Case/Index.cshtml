@@ -17,6 +17,7 @@
                 {
                     <th>Action</th>
                 }
+                <th>Priority</th>
             </tr>
             </thead>
             <tbody>
@@ -59,6 +60,20 @@
                             </a>
                         </td>
                     }
+                    <td>
+                        @if (c.PriorityScore >= 70)
+                        {
+                            <span class="badge badge-danger">High</span>
+                        }
+                        else if (c.PriorityScore >= 40)
+                        {
+                            <span class="badge badge-warning">Medium</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success">Low</span>
+                        }
+                    </td>
                 </tr>
             }
             </tbody>
