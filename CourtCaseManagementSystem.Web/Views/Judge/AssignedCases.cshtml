@@ -6,8 +6,6 @@
 
 <h1 class="h3 mb-4 text-gray-800">Assigned Cases</h1>
 
-<h2>Assigned Cases</h2>
-
 <table class="table table-bordered">
     <thead>
     <tr>
@@ -24,7 +22,14 @@
     @foreach (var c in Model)
     {
         <tr>
-            <td>@c.CaseNumber</td>
+            <td>
+                <a asp-controller="Case"
+                   asp-action="Details"
+                   asp-route-id="@c.Id"
+                   class="font-weight-bold text-primary">
+                    @c.CaseNumber
+                </a>
+            </td>
             <td>@c.Title</td>
             <td>@c.Court?.Name</td>
             <td>@c.Lawyer?.FullName</td>

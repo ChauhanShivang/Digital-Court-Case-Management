@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Write Judgment";
+}
+
+<h2 class="mb-4">Write Judgment</h2>
+
+<form method="post">
+
+    <input type="hidden" name="caseId" value="@ViewBag.Case.Id"/>
+
+    <div class="form-group">
+        <label>Judgment Content</label>
+
+        <textarea name="content"
+          class="form-control"
+          rows="10"
+          placeholder="Write the court judgment here..."></textarea>
+    </div>
+
+    <button class="btn btn-success mt-3">
+        Save Draft
+    </button>
+
+</form>

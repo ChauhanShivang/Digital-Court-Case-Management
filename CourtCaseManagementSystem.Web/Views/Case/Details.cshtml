@@ -179,10 +179,28 @@
                 {
                     <p><strong>Status:</strong> @Model.Judgment.Status</p>
                     <p>@Model.Judgment.Content</p>
+
+                    @if (Context.Session.GetString("UserRole") == "Judge")
+                    {
+                        <a asp-controller="Judgment"
+                           asp-action="Edit"
+                           asp-route-caseId="@Model.Id"
+                           class="btn btn-primary mt-2">
+                            Edit Judgment
+                        </a>
+                    }
                 }
                 else
                 {
-                    <p>No judgment uploaded yet.</p>
+                    if (Context.Session.GetString("UserRole") == "Judge")
+                    {
+                        <a asp-controller="Judgment"
+                           asp-action="Create"
+                           asp-route-caseId="@Model.Id"
+                           class="btn btn-success">
+                            Write Judgment
+                        </a>
+                    }
                 }
             </div>
             

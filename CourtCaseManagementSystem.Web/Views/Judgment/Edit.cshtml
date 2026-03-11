@@ -1,0 +1,25 @@
+@model CourtCaseManagementSystem.Core.Entities.Judgment
+
+<h2 class="mb-4">Edit Judgment Draft</h2>
+
+<form method="post">
+
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="CaseId" />
+
+    <div class="form-group">
+
+        <label>Judgment Content</label>
+
+        <textarea asp-for="Content"
+          class="form-control"
+          rows="10">
+</textarea>
+
+    </div>
+
+    <button class="btn btn-primary mt-3">
+        Update Draft
+    </button>
+
+</form>
