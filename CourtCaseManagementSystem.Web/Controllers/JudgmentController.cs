@@ -67,4 +67,31 @@ public class JudgmentController : BaseController
 
         return RedirectToAction("Details", "Case", new { id = judgment.CaseId });
     }
+    
+    public async Task<IActionResult> Finalize(int id)
+    {
+        var judgment = await _context.Judgments
+            .Include(j => j.Case)
+            .FirstOrDefaultAsync(j => j.Id == id);
+
+        if (judgment == null)
+            return NotFound();
+
+        judgment.Status = "Final";
+        judgment.FinalizedAt = DateTime.UtcNow;
+
+        if (judgment.Case != null)
+            judgment.Case.Status = "Closed";
+
+        _context.CaseEvents.Add(new CaseEvent
+        {
+            CaseId = judgment.CaseId,
+            EventType = "Judgment Finalized",
+            Description = "Final judgment issued by the court."
+        });
+
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("Details", "Case", new { id = judgment.CaseId });
+    }
 }

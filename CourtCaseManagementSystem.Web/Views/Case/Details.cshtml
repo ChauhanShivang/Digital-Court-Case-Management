@@ -180,13 +180,20 @@
                     <p><strong>Status:</strong> @Model.Judgment.Status</p>
                     <p>@Model.Judgment.Content</p>
 
-                    @if (Context.Session.GetString("UserRole") == "Judge")
+                    @if (Context.Session.GetString("UserRole") == "Judge" && Model.Judgment.Status == "Draft")
                     {
                         <a asp-controller="Judgment"
                            asp-action="Edit"
                            asp-route-caseId="@Model.Id"
                            class="btn btn-primary mt-2">
                             Edit Judgment
+                        </a>
+
+                        <a asp-controller="Judgment"
+                           asp-action="Finalize"
+                           asp-route-id="@Model.Judgment.Id"
+                           class="btn btn-danger mt-2">
+                            Finalize Judgment
                         </a>
                     }
                 }
