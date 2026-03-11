@@ -1,1 +1,9 @@
 # .NET Git Ignore
+bin/
+obj/
+.idea/
+.vs/
+*.user
+*.suo
+*.log
+.DS_Store
