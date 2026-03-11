@@ -1,17 +1,42 @@
+using CourtCaseManagementSystem.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
+using CourtCaseManagementSystem.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CourtCaseManagementSystem.Web.Controllers;
 
-public class UserController : Controller
+public class UserController : BaseController
 {
-    // GET
-    public IActionResult Index()
+    private readonly ApplicationDbContext _context;
+
+    public UserController(ApplicationDbContext context)
     {
+        _context = context;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var users = await _context.Users
+            .Include(u => u.Role)
+            .ToListAsync();
+
+        return View(users);
+    }
+
+    public async Task<IActionResult> Create()
+    {
+        ViewBag.Roles = await _context.Roles.ToListAsync();
         return View();
     }
-    
-    public IActionResult Create()
+
+    [HttpPost]
+    public async Task<IActionResult> Create(User model)
     {
-        return View();
+        model.CreatedAt = DateTime.UtcNow;
+
+        _context.Users.Add(model);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("Index");
     }
 }
