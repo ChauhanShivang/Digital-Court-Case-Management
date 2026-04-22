@@ -1,0 +1,47 @@
+@model List<CourtCaseManagementSystem.Core.Entities.Hearing>
+
+<h1 class="h3 mb-4 text-gray-800">Upcoming Hearings</h1>
+
+<table class="table table-bordered">
+
+    <thead>
+    <tr>
+        <th>Case No</th>
+        <th>Court</th>
+        <th>Date</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    @foreach (var h in Model)
+    {
+        <tr>
+            <td>@h.Case?.CaseNumber</td>
+            <td>@h.Case?.Court?.Name</td>
+            <td>@h.HearingDate.ToString("dd MMM yyyy")</td>
+            <td>@h.Status</td>
+            <td>
+                @if (h.HearingDate > DateTime.Now)
+                {
+                    <a asp-controller="Adjournment"
+                       asp-action="Request"
+                       asp-route-hearingId="@h.Id"
+                       class="btn btn-warning btn-sm">
+                        Request Adjournment
+                    </a>
+                }
+                else
+                {
+                    <button class="btn btn-secondary btn-sm" disabled>
+                        Adjournment Closed
+                    </button>
+                }
+            </td>
+        </tr>
+    }
+
+    </tbody>
+
+</table>

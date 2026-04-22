@@ -1,0 +1,61 @@
+@model List<CourtCaseManagementSystem.Core.Entities.Case>
+
+<h1 class="h3 mb-4 text-gray-800">
+    Case List
+</h1>
+
+<div class="mb-3">
+
+    <a asp-action="List"
+       asp-route-filter="@ViewBag.Filter"
+       asp-route-sort="latest"
+       class="btn btn-sm btn-outline-primary">
+        Latest
+    </a>
+
+    <a asp-action="List"
+       asp-route-filter="@ViewBag.Filter"
+       asp-route-sort="oldest"
+       class="btn btn-sm btn-outline-secondary">
+        Oldest
+    </a>
+
+    <a asp-action="List"
+       asp-route-filter="@ViewBag.Filter"
+       asp-route-sort="priority"
+       class="btn btn-sm btn-outline-success">
+        Priority
+    </a>
+
+</div>
+
+<table class="table table-bordered">
+
+    <thead>
+    <tr>
+        <th>Case No</th>
+        <th>Title</th>
+        <th>Court</th>
+        <th>Lawyer</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    @foreach (var c in Model)
+    {
+        <tr>
+
+            <td>@c.CaseNumber</td>
+            <td>@c.Title</td>
+            <td>@c.Court?.Name</td>
+            <td>@c.Lawyer?.FullName</td>
+            <td>@c.Status</td>
+
+        </tr>
+    }
+
+    </tbody>
+
+</table>

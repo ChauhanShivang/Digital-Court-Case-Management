@@ -10,3 +10,4 @@
 /Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Core/obj/Debug/net8.0/refint/CourtCaseManagementSystem.Core.dll
 /Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Core/obj/Debug/net8.0/CourtCaseManagementSystem.Core.pdb
 /Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Core/obj/Debug/net8.0/ref/CourtCaseManagementSystem.Core.dll
+/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Core/obj/Debug/net8.0/CourtCaseManagementSystem.Core.csproj.AssemblyReference.cache

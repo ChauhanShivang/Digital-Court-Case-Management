@@ -31,7 +31,26 @@ public class DashboardController : BaseController
 
             ViewBag.AssignedCases = assignedCases;
         }
+        
+        ViewBag.TotalCases = await _context.Cases.CountAsync();
 
+        ViewBag.PendingCases = await _context.Cases
+            .CountAsync(c => c.Status == "Scheduled");
+
+        ViewBag.ClosedCases = await _context.Cases
+            .CountAsync(c => c.Status == "Closed");
+
+        ViewBag.UpcomingHearings = await _context.Hearings
+            .Include(h => h.Case)
+            .ThenInclude(c => c.JudgeAssignments)
+            .ThenInclude(j => j.Judge)
+            .Where(h => h.Status == "Scheduled"
+                        && h.HearingDate != DateTime.MinValue
+                        && h.HearingDate > DateTime.Now)    
+            .OrderBy(h => h.HearingDate)
+            .Take(5)
+            .ToListAsync();
+        
         return View();
     }
 }

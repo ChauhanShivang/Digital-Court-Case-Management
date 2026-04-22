@@ -1,0 +1,18 @@
+<h2>Assign Multiple Lawyers</h2>
+
+<form method="post">
+
+    <input type="hidden" name="caseId" value="@ViewBag.CaseId" />
+
+    <label>Select Lawyers</label>
+
+    <select name="lawyerIds" multiple class="form-control">
+        @foreach (var l in ViewBag.Lawyers)
+        {
+            <option value="@l.Id">@l.FullName</option>
+        }
+    </select>
+
+    <button class="btn btn-primary mt-3">Assign</button>
+
+</form>

@@ -2,6 +2,31 @@
 
 <h2>My Hearings</h2>
 
+<form method="get" class="mb-3">
+    <div class="row">
+
+        <div class="col-md-5">
+            <input type="text" name="search"
+                   value="@ViewBag.Search"
+                   class="form-control"
+                   placeholder="Search case..." />
+        </div>
+
+        <div class="col-md-4">
+            <select name="sort" class="form-control">
+                <option value="latest">Latest</option>
+                <option value="oldest">Oldest</option>
+                <option value="priority">Priority</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <button class="btn btn-primary w-100">Apply</button>
+        </div>
+
+    </div>
+</form>
+
 <table class="table table-bordered">
     <thead>
     <tr>

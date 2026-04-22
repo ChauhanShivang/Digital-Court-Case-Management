@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets/CourtCaseManagementSystem.Web.bundle.scp.css"
     },
     {
+      "Id": "/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/wwwroot/chargesheets/47feb036-af74-41ad-90b7-899b875f02c8.pdf",
+      "PackagePath": "staticwebassets/chargesheets/47feb036-af74-41ad-90b7-899b875f02c8.pdf"
+    },
+    {
+      "Id": "/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/wwwroot/chargesheets/5ecb583f-d7d3-40da-a3ae-40f9b10fd11b.pdf",
+      "PackagePath": "staticwebassets/chargesheets/5ecb583f-d7d3-40da-a3ae-40f9b10fd11b.pdf"
+    },
+    {
       "Id": "/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Web/wwwroot/css/sb-admin-2.css",
       "PackagePath": "staticwebassets/css/sb-admin-2.css"
     },

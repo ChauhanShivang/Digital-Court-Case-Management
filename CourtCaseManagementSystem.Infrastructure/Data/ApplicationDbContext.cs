@@ -19,10 +19,26 @@ public class ApplicationDbContext : DbContext
     public DbSet<JudgeAssignment> JudgeAssignments => Set<JudgeAssignment>();
     public DbSet<Judgment> Judgments => Set<Judgment>();
     public DbSet<CaseEvent> CaseEvents => Set<CaseEvent>();
+    public DbSet<AdjournmentRequest> AdjournmentRequests => Set<AdjournmentRequest>();
+    public DbSet<Application> Applications => Set<Application>();
+    public DbSet<CaseLawyer> CaseLawyers { get; set; }
+    public DbSet<FIR> FIRs => Set<FIR>();
+    public DbSet<ChargeSheet> ChargeSheets => Set<ChargeSheet>();
+    
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<CaseLawyer>()
+            .HasOne(cl => cl.Case)
+            .WithMany(c => c.CaseLawyers)
+            .HasForeignKey(cl => cl.CaseId);
+
+        modelBuilder.Entity<CaseLawyer>()
+            .HasOne(cl => cl.Lawyer)
+            .WithMany()
+            .HasForeignKey(cl => cl.LawyerId);
 
         modelBuilder.Entity<Case>()
             .HasOne(c => c.Lawyer)
@@ -35,6 +51,16 @@ public class ApplicationDbContext : DbContext
             .WithMany()
             .HasForeignKey(c => c.CreatedByClerkId)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<FIR>()
+            .HasOne(f => f.Case)
+            .WithOne(c => c.FIR)
+            .HasForeignKey<FIR>(f => f.CaseId);
+
+        modelBuilder.Entity<ChargeSheet>()
+            .HasOne(cs => cs.Case)
+            .WithOne(c => c.ChargeSheet)
+            .HasForeignKey<ChargeSheet>(cs => cs.CaseId);
         
         modelBuilder.Entity<Role>().HasData(
             new Role { Id = 1, Name = "Admin", CreatedAt = DateTime.UtcNow },

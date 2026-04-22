@@ -1,0 +1,47 @@
+@model List<CourtCaseManagementSystem.Core.Entities.Hearing>
+
+<h1 class="h3 mb-4 text-gray-800">Daily Cause List</h1>
+
+<table class="table table-bordered">
+
+    <thead>
+    <tr>
+        <th>Case No</th>
+        <th>Court</th>
+        <th>Lawyer</th>
+        <th>Hearing Date</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var h in Model)
+        {
+            <tr>
+                <td>@h.Case?.CaseNumber</td>
+                <td>@h.Case?.Court?.Name</td>
+                <td>@h.Case?.Lawyer?.FullName</td>
+                <td>@h.HearingDate.ToString("dd MMM yyyy")</td>
+                <td>
+                    <span class="badge badge-warning">
+                        @h.Status
+                    </span>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="5" class="text-center">
+                No hearings scheduled today
+            </td>
+        </tr>
+    }
+
+    </tbody>
+
+</table>

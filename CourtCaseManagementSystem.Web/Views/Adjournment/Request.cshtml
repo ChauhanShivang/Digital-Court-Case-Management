@@ -1,0 +1,12 @@
+<h2>Request Adjournment</h2>
+
+<form method="post">
+    <input type="hidden" name="hearingId" value="@ViewBag.HearingId" />
+
+    <div class="form-group">
+        <label>Reason</label>
+        <textarea name="reason" class="form-control" required></textarea>
+    </div>
+
+    <button class="btn btn-primary mt-2">Submit</button>
+</form>

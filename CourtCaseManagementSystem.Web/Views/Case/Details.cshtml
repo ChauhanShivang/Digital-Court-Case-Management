@@ -1,3 +1,4 @@
+@using CourtCaseManagementSystem.Core.Entities
 @model CourtCaseManagementSystem.Core.Entities.Case
 @{
     ViewData["Title"] = "Case Details";
@@ -23,6 +24,18 @@
             <li class="nav-item">
                 <a class="nav-link" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab">Timeline</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="applications-tab" data-toggle="tab" href="#applications" role="tab">
+                    Applications
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#fir">FIR</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#chargesheet">Charge Sheet</a>
+            </li>
         </ul>
     </div>
 
@@ -35,7 +48,14 @@
                 <p><strong>Title:</strong> @Model.Title</p>
                 <p><strong>Case Type:</strong> @Model.CaseType</p>
                 <p><strong>Court:</strong> @Model.Court?.Name</p>
-                <p><strong>Lawyer:</strong> @Model.Lawyer?.FullName</p>
+                <p><strong>Lawyers:</strong></p>
+
+                <ul>
+                    @foreach (var l in Model.CaseLawyers ?? new List<CaseLawyer>())
+                    {
+                        <li>@l.Lawyer?.FullName</li>
+                    }
+                </ul>
 
                 <p>
                     <strong>Status:</strong>
@@ -58,6 +78,15 @@
 
             <!-- Hearings Tab -->
             <div class="tab-pane fade" id="hearings" role="tabpanel">
+                @if (Context.Session.GetString("UserRole") == "Judge")
+                {
+                    <a asp-controller="Hearing"
+                       asp-action="Create"
+                       asp-route-caseId="@Model.Id"
+                       class="btn btn-primary mb-3">
+                        Schedule Hearing
+                    </a>
+                }
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -109,6 +138,7 @@
                             <option>Evidence</option>
                             <option>Affidavit</option>
                             <option>Petition</option>
+                            <option>Vakalatnama</option>
                             <option>Other</option>
                         </select>
                     </div>
@@ -123,9 +153,22 @@
 
                 </form>
 
+                @{
+                    var userId = Context.Session.GetInt32("UserId");
+
+                    bool hasVakalatnama = Model.Documents != null &&
+                                          Model.Documents.Any(d => d.IsVakalatnama 
+                                                                   && d.UploadedByUserId == userId);
+                }
+
+                @if (Context.Session.GetString("UserRole") == "Lawyer" && !hasVakalatnama)
+                {
+                    <div class="alert alert-warning">
+                        ⚠ Please upload Vakalatnama to access case documents.
+                    </div>
+                }
 
                 <!-- Documents Table -->
-
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -138,7 +181,8 @@
 
                     <tbody>
 
-                    @if (Model.Documents != null && Model.Documents.Any())
+                    @if (Model.Documents != null && Model.Documents.Any() 
+                                                 && (Context.Session.GetString("UserRole") != "Lawyer" || hasVakalatnama))
                     {
                         foreach (var doc in Model.Documents)
                         {
@@ -175,30 +219,72 @@
 
             <!-- Judgment Tab -->
             <div class="tab-pane fade" id="judgment" role="tabpanel">
+
                 @if (Model.Judgment != null)
                 {
-                    <p><strong>Status:</strong> @Model.Judgment.Status</p>
+                    <!-- ✅ STATUS -->
+                    <p>
+                        <strong>Status:</strong>
+
+                        @if (Model.Judgment.Status == "Draft")
+                        {
+                            <span class="badge badge-secondary">Draft</span>
+                        }
+                        else if (Model.Judgment.Status == "Under Review")
+                        {
+                            <span class="badge badge-warning">Under Review</span>
+                        }
+                        else if (Model.Judgment.Status == "Pronounced")
+                        {
+                            <span class="badge badge-info">Pronounced</span>
+                        }
+                        else if (Model.Judgment.Status == "Delivered")
+                        {
+                            <span class="badge badge-success">Delivered</span>
+                        }
+                    </p>
+
+                    <!-- ✅ CONTENT -->
                     <p>@Model.Judgment.Content</p>
 
-                    @if (Context.Session.GetString("UserRole") == "Judge" && Model.Judgment.Status == "Draft")
+                    <!-- ✅ DOWNLOAD (LAWYER ONLY) -->
+                    @if (Model.Judgment.Status == "Delivered"
+                         && Context.Session.GetString("UserRole") == "Lawyer")
+                    {
+                        <a asp-controller="Judgment"
+                           asp-action="Download"
+                           asp-route-id="@Model.Judgment.Id"
+                           class="btn btn-success mt-2">
+                            Download Judgment
+                        </a>
+                    }
+
+                    <!-- ✅ APPEAL BUTTON -->
+                    @* @if (Model.Judgment.Status == "Delivered" *@
+                    @*     && Context.Session.GetString("UserRole") == "Lawyer") *@
+                    @* { *@
+                    @*     <a asp-controller="Case" *@
+                    @*        asp-action="FileAppeal" *@
+                    @*        asp-route-id="@Model.Id" *@
+                    @*        class="btn btn-danger mt-2 ml-2"> *@
+                    @*         File Appeal *@
+                    @*     </a> *@
+                    @* } *@
+
+                    <!-- ✅ EDIT (JUDGE ONLY) -->
+                    @if (Context.Session.GetString("UserRole") == "Judge")
                     {
                         <a asp-controller="Judgment"
                            asp-action="Edit"
                            asp-route-caseId="@Model.Id"
-                           class="btn btn-primary mt-2">
+                           class="btn btn-primary mt-2 ml-2">
                             Edit Judgment
-                        </a>
-
-                        <a asp-controller="Judgment"
-                           asp-action="Finalize"
-                           asp-route-id="@Model.Judgment.Id"
-                           class="btn btn-danger mt-2">
-                            Finalize Judgment
                         </a>
                     }
                 }
                 else
                 {
+                    <!-- ✅ CREATE (JUDGE ONLY) -->
                     if (Context.Session.GetString("UserRole") == "Judge")
                     {
                         <a asp-controller="Judgment"
@@ -211,7 +297,95 @@
                 }
             </div>
             
+            <div class="tab-pane fade" id="applications" role="tabpanel">
+
+                <a asp-controller="Application"
+                   asp-action="Create"
+                   asp-route-caseId="@Model.Id"
+                   class="btn btn-primary mb-3">
+                    Add Application
+                </a>
+
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                        @if (Context.Session.GetString("UserRole") == "Judge")
+                        {
+                            <th>Action</th>
+                        }
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    @if (Model.Applications != null && Model.Applications.Any())
+                    {
+                        foreach (var a in Model.Applications)
+                        {
+                            <tr>
+                                <td>@a.Type</td>
+                                <td>
+                                    @if (a.Status == "Filed")
+                                    {
+                                        <span class="badge badge-secondary">Filed</span>
+                                    }
+                                    else if (a.Status == "Listed")
+                                    {
+                                        <span class="badge badge-info">Listed</span>
+                                    }
+                                    else if (a.Status == "Granted")
+                                    {
+                                        <span class="badge badge-success">Granted</span>
+                                    }
+                                    else if (a.Status == "Rejected")
+                                    {
+                                        <span class="badge badge-danger">Rejected</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-warning">Pending</span>
+                                    }
+                                </td>
+                                <td>
+                                    @(string.IsNullOrEmpty(a.Remarks) ? "—" : a.Remarks)
+                                </td>
+                                
+                                @if (Context.Session.GetString("UserRole") == "Judge")
+                                {
+                                    <td>
+                                        <a asp-controller="Application"
+                                           asp-action="Edit"
+                                           asp-route-id="@a.Id"
+                                           class="btn btn-sm btn-primary">
+                                            Update
+                                        </a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center">No applications filed</td>
+                        </tr>
+                    }
+
+                    </tbody>
+                </table>
+
+            </div>
+            
             <div class="tab-pane fade" id="timeline" role="tabpanel">
+                <a asp-controller="Judge"
+                   asp-action="CaseTimeline"
+                   asp-route-caseId="@Model.Id"
+                   class="btn btn-primary mb-3">
+                    View Full Timeline
+                </a>
                 <ul class="timeline">
 
                     @if (Model.CaseEvents != null && Model.CaseEvents.Any())
@@ -235,7 +409,69 @@
 
                 </ul>
             </div>
+            
+            @* FIR Tab *@
+            <div class="tab-pane fade" id="fir">
 
+                @if (Model.FIR != null)
+                {
+                    <p><strong>FIR No:</strong> @Model.FIR.FIRNumber</p>
+                    <p><strong>Police Station:</strong> @Model.FIR.PoliceStation</p>
+                    <p>@Model.FIR.Description</p>
+                }
+                else
+                {
+                    @if (Context.Session.GetString("UserRole") == "Clerk")
+                    {
+                        <a asp-controller="FIR"
+                           asp-action="Create"
+                           asp-route-caseId="@Model.Id"
+                           class="btn btn-primary">
+                            Add FIR
+                        </a>
+                    }
+                }
+
+            </div>
+            
+            @* Chargesheet Tab *@
+            <div class="tab-pane fade" id="chargesheet">
+
+                <h5 class="mb-3">ChargeSheets</h5>
+
+                <table class="table table-bordered">
+                    @if (Model.ChargeSheet != null)
+                    {
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Charges</th>
+                                <th>File</th>
+                                <th>Download</th>
+                            </tr>
+                            <tr>
+                                <td>@Model.ChargeSheet.Charges</td>
+                                <td>@Model.ChargeSheet.FileName</td>
+                                <td>
+                                    <a href="@Model.ChargeSheet.FilePath" target="_blank" 
+                                       class="btn btn-success btn-sm">
+                                        View PDF
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                No ChargeSheet uploaded
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+            </div>
+            
         </div>
     </div>
 </div>

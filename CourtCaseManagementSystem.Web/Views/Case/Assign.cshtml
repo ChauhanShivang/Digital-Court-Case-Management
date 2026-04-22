@@ -14,10 +14,12 @@
 
     <div class="form-group mt-3">
         <label>Select Judge</label>
-        <select name="judgeId" class="form-control">
-            @foreach (var judge in ViewBag.Judges)
+        <input type="text" id="judgeSearch" class="form-control mb-2" placeholder="Search Judge..." />
+
+        <select name="judgeId" id="judgeList" class="form-control mt-2">
+            @foreach (var j in ViewBag.Judges)
             {
-                <option value="@judge.Id">@judge.FullName</option>
+                <option value="@j.Id">@j.FullName</option>
             }
         </select>
     </div>
@@ -26,3 +28,26 @@
         Assign
     </button>
 </form>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchBox = document.getElementById("judgeSearch");
+    const list = document.getElementById("judgeList");
+
+    if (!searchBox || !list) return;
+
+    searchBox.addEventListener("keyup", function () {
+        let filter = this.value.toLowerCase();
+        let options = list.options;
+
+        for (let i = 0; i < options.length; i++) {
+            let text = options[i].text.toLowerCase();
+            options[i].style.display = text.includes(filter) ? "" : "none";
+        }
+    });
+
+});
+</script>

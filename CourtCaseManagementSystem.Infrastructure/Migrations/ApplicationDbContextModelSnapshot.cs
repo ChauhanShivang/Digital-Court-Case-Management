@@ -22,6 +22,75 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.AdjournmentRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("HearingId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RequestedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("RequestedById")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RequestedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HearingId");
+
+                    b.HasIndex("RequestedById");
+
+                    b.ToTable("AdjournmentRequests");
+                });
+
+            modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.Application", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CaseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CaseId");
+
+                    b.ToTable("Applications");
+                });
+
             modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.Case", b =>
                 {
                     b.Property<int>("Id")
@@ -107,6 +176,64 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                     b.ToTable("CaseEvents");
                 });
 
+            modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.CaseLawyer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LawyerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CaseId");
+
+                    b.HasIndex("LawyerId");
+
+                    b.ToTable("CaseLawyers");
+                });
+
+            modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.ChargeSheet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CaseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Charges")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FiledDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("UploadedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CaseId")
+                        .IsUnique();
+
+                    b.ToTable("ChargeSheets");
+                });
+
             modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.Court", b =>
                 {
                     b.Property<int>("Id")
@@ -142,7 +269,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         {
                             Id = 1,
                             CourtType = "District",
-                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4320),
+                            CreatedAt = new DateTime(2026, 4, 13, 15, 37, 52, 884, DateTimeKind.Utc).AddTicks(190),
                             IsActive = true,
                             Location = "Surat",
                             Name = "Surat District Court"
@@ -151,7 +278,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         {
                             Id = 2,
                             CourtType = "District",
-                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4320),
+                            CreatedAt = new DateTime(2026, 4, 13, 15, 37, 52, 884, DateTimeKind.Utc).AddTicks(190),
                             IsActive = true,
                             Location = "Ahmedabad",
                             Name = "Ahmedabad District Court"
@@ -160,7 +287,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         {
                             Id = 3,
                             CourtType = "High Court",
-                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4320),
+                            CreatedAt = new DateTime(2026, 4, 13, 15, 37, 52, 884, DateTimeKind.Utc).AddTicks(190),
                             IsActive = true,
                             Location = "Ahmedabad",
                             Name = "Gujarat High Court"
@@ -190,6 +317,9 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsVakalatnama")
+                        .HasColumnType("bit");
+
                     b.Property<string>("StoredFileName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -210,6 +340,40 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                     b.HasIndex("UploadedById");
 
                     b.ToTable("Documents");
+                });
+
+            modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.FIR", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CaseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FIRNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FiledDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PoliceStation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CaseId")
+                        .IsUnique();
+
+                    b.ToTable("FIRs");
                 });
 
             modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.Hearing", b =>
@@ -336,25 +500,25 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4200),
+                            CreatedAt = new DateTime(2026, 4, 13, 15, 37, 52, 884, DateTimeKind.Utc).AddTicks(90),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4200),
+                            CreatedAt = new DateTime(2026, 4, 13, 15, 37, 52, 884, DateTimeKind.Utc).AddTicks(90),
                             Name = "Judge"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4200),
+                            CreatedAt = new DateTime(2026, 4, 13, 15, 37, 52, 884, DateTimeKind.Utc).AddTicks(100),
                             Name = "Lawyer"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4200),
+                            CreatedAt = new DateTime(2026, 4, 13, 15, 37, 52, 884, DateTimeKind.Utc).AddTicks(100),
                             Name = "Clerk"
                         });
                 });
@@ -398,7 +562,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4300),
+                            CreatedAt = new DateTime(2026, 4, 13, 15, 37, 52, 884, DateTimeKind.Utc).AddTicks(170),
                             Email = "admin@court.com",
                             FullName = "System Admin",
                             IsActive = true,
@@ -408,7 +572,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4300),
+                            CreatedAt = new DateTime(2026, 4, 13, 15, 37, 52, 884, DateTimeKind.Utc).AddTicks(170),
                             Email = "judge@court.com",
                             FullName = "Justice A. Shah",
                             IsActive = true,
@@ -418,7 +582,7 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4300),
+                            CreatedAt = new DateTime(2026, 4, 13, 15, 37, 52, 884, DateTimeKind.Utc).AddTicks(170),
                             Email = "lawyer@court.com",
                             FullName = "Adv. Rohan Mehta",
                             IsActive = true,
@@ -428,13 +592,41 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 3, 10, 17, 15, 39, 456, DateTimeKind.Utc).AddTicks(4300),
+                            CreatedAt = new DateTime(2026, 4, 13, 15, 37, 52, 884, DateTimeKind.Utc).AddTicks(170),
                             Email = "clerk@court.com",
                             FullName = "Court Clerk Priya Patel",
                             IsActive = true,
                             PasswordHash = "clerk123",
                             RoleId = 4
                         });
+                });
+
+            modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.AdjournmentRequest", b =>
+                {
+                    b.HasOne("CourtCaseManagementSystem.Core.Entities.Hearing", "Hearing")
+                        .WithMany()
+                        .HasForeignKey("HearingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CourtCaseManagementSystem.Core.Entities.User", "RequestedBy")
+                        .WithMany()
+                        .HasForeignKey("RequestedById");
+
+                    b.Navigation("Hearing");
+
+                    b.Navigation("RequestedBy");
+                });
+
+            modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.Application", b =>
+                {
+                    b.HasOne("CourtCaseManagementSystem.Core.Entities.Case", "Case")
+                        .WithMany("Applications")
+                        .HasForeignKey("CaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Case");
                 });
 
             modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.Case", b =>
@@ -475,6 +667,36 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                     b.Navigation("Case");
                 });
 
+            modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.CaseLawyer", b =>
+                {
+                    b.HasOne("CourtCaseManagementSystem.Core.Entities.Case", "Case")
+                        .WithMany("CaseLawyers")
+                        .HasForeignKey("CaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CourtCaseManagementSystem.Core.Entities.User", "Lawyer")
+                        .WithMany()
+                        .HasForeignKey("LawyerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Case");
+
+                    b.Navigation("Lawyer");
+                });
+
+            modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.ChargeSheet", b =>
+                {
+                    b.HasOne("CourtCaseManagementSystem.Core.Entities.Case", "Case")
+                        .WithOne("ChargeSheet")
+                        .HasForeignKey("CourtCaseManagementSystem.Core.Entities.ChargeSheet", "CaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Case");
+                });
+
             modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.Document", b =>
                 {
                     b.HasOne("CourtCaseManagementSystem.Core.Entities.Case", "Case")
@@ -490,6 +712,17 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
                     b.Navigation("Case");
 
                     b.Navigation("UploadedBy");
+                });
+
+            modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.FIR", b =>
+                {
+                    b.HasOne("CourtCaseManagementSystem.Core.Entities.Case", "Case")
+                        .WithOne("FIR")
+                        .HasForeignKey("CourtCaseManagementSystem.Core.Entities.FIR", "CaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Case");
                 });
 
             modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.Hearing", b =>
@@ -554,9 +787,17 @@ namespace CourtCaseManagementSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("CourtCaseManagementSystem.Core.Entities.Case", b =>
                 {
+                    b.Navigation("Applications");
+
                     b.Navigation("CaseEvents");
 
+                    b.Navigation("CaseLawyers");
+
+                    b.Navigation("ChargeSheet");
+
                     b.Navigation("Documents");
+
+                    b.Navigation("FIR");
 
                     b.Navigation("Hearings");
 

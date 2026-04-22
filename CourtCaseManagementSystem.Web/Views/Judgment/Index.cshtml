@@ -1,0 +1,82 @@
+@model List<CourtCaseManagementSystem.Core.Entities.Judgment>
+
+<h1 class="h3 mb-4 text-gray-800">Judgment Drafts</h1>
+
+<form method="get" class="mb-3">
+    <div class="row">
+
+        <div class="col-md-5">
+            <input type="text" name="search"
+                   value="@ViewBag.Search"
+                   class="form-control"
+                   placeholder="Search case..." />
+        </div>
+
+        <div class="col-md-4">
+            <select name="sort" class="form-control">
+                <option value="latest">Latest</option>
+                <option value="oldest">Oldest</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <button class="btn btn-primary w-100">Apply</button>
+        </div>
+
+    </div>
+</form>
+
+<table class="table table-bordered">
+
+    <thead>
+    <tr>
+        <th>Case No</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    @if (Model != null && Model.Any())
+    {
+        foreach (var j in Model)
+        {
+            <tr>
+                <td>@j.Case?.CaseNumber</td>
+                <td>@j.Case?.Title</td>
+
+                <td>
+                    @if (j.Status == "Draft")
+                    {
+                        <span class="badge badge-warning">Draft</span>
+                    }
+                    else if (j.Status == "Final")
+                    {
+                        <span class="badge badge-success">Final</span>
+                    }
+                </td>
+
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-caseId="@j.CaseId"
+                       class="btn btn-sm btn-primary">
+                        Open
+                    </a>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="4" class="text-center">
+                No judgment drafts available
+            </td>
+        </tr>
+    }
+
+    </tbody>
+
+</table>
