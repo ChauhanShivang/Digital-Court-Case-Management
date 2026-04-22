@@ -1,3 +1,4 @@
+@model List<CourtCaseManagementSystem.Core.Entities.Case>
 @{
     ViewData["Title"] = "Judgment Drafts";
 }
@@ -16,22 +17,51 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>CC-2026-215</td>
-                <td>Patel vs Sharma</td>
-                <td><span class="badge badge-warning">Draft Saved</span></td>
-                <td>
-                    <button class="btn btn-sm btn-primary">Edit Draft</button>
-                </td>
-            </tr>
-            <tr>
-                <td>CC-2026-198</td>
-                <td>Mehta vs State</td>
-                <td><span class="badge badge-success">Finalized</span></td>
-                <td>
-                    <button class="btn btn-sm btn-secondary">View</button>
-                </td>
-            </tr>
+
+            @foreach (var c in Model)
+            {
+                <tr>
+
+                    <td>@c.CaseNumber</td>
+                    <td>@c.Title</td>
+
+                    <td>
+                        @if (c.Judgment == null)
+                        {
+                            <span class="badge badge-warning">No Draft</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success">@c.Judgment.Status</span>
+                        }
+                    </td>
+
+                    <td>
+
+                        @if (c.Judgment == null)
+                        {
+                            <a asp-controller="Judgment"
+                               asp-action="Create"
+                               asp-route-caseId="@c.Id"
+                               class="btn btn-sm btn-success">
+                                Write Draft
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Judgment"
+                               asp-action="Edit"
+                               asp-route-caseId="@c.Id"
+                               class="btn btn-sm btn-primary">
+                                Edit Draft
+                            </a>
+                        }
+
+                    </td>
+
+                </tr>
+            }
+
             </tbody>
         </table>
     </div>

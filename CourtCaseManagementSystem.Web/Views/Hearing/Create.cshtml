@@ -1,0 +1,32 @@
+@model CourtCaseManagementSystem.Core.Entities.Hearing
+
+<h1 class="h3 mb-4 text-gray-800">Schedule Hearing</h1>
+
+<form asp-action="Create" method="post">
+
+    <input type="hidden" asp-for="CaseId"/>
+
+    <div class="form-group">
+        <label>Hearing Date</label>
+        <input asp-for="HearingDate" type="date" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Status</label>
+        <select asp-for="Status" class="form-control">
+            <option>Scheduled</option>
+            <option>Completed</option>
+            <option>Adjourned</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Remarks</label>
+        <textarea asp-for="Remarks" class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-success mt-3">
+        Save Hearing
+    </button>
+
+</form>

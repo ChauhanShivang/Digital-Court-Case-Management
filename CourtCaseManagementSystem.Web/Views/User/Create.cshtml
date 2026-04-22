@@ -7,37 +7,46 @@
 <div class="card shadow mb-4">
     <div class="card-body">
 
-        <form>
+        <form asp-action="Create" method="post">
+
             <div class="form-group">
                 <label>Full Name</label>
-                <input type="text" class="form-control" placeholder="Enter full name" />
+                <input name="FullName" type="text" class="form-control" required />
             </div>
 
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" placeholder="Enter email" />
+                <input name="Email" type="email" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input name="password" type="password" class="form-control" required />
             </div>
 
             <div class="form-group">
                 <label>Role</label>
-                <select class="form-control">
-                    <option>Admin</option>
-                    <option>Judge</option>
-                    <option>Lawyer</option>
-                    <option>Court Clerk</option>
+                <select name="RoleId" class="form-control">
+
+                    @foreach (var role in ViewBag.Roles)
+                    {
+                        <option value="@role.Id">@role.Name</option>
+                    }
+
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Status</label>
-                <select class="form-control">
-                    <option>Active</option>
-                    <option>Inactive</option>
+                <select name="IsActive" class="form-control">
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
                 </select>
             </div>
 
-            <button class="btn btn-primary">Save User</button>
+            <button type="submit" class="btn btn-primary">Save User</button>
             <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a>
+
         </form>
 
     </div>

@@ -17,4 +17,6 @@ public class Document
     public string StoredFileName { get; set; } = null!;
 
     public DateTime UploadedAt { get; set; } = DateTime.UtcNow;
+    
+    public bool IsVakalatnama { get; set; } = false;
 }

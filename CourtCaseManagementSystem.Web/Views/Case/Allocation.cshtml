@@ -1,0 +1,32 @@
+@model List<CourtCaseManagementSystem.Core.Entities.Case>
+
+<h2>Case Allocation</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Case No</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Court</th>
+        <th>Judge</th>
+        <th>Filed Date</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var c in Model)
+    {
+        var judge = c.JudgeAssignments?.FirstOrDefault()?.Judge;
+
+        <tr>
+            <td>@c.CaseNumber</td>
+            <td>@c.Title</td>
+            <td>@c.Status</td>
+            <td>@c.Court?.Name</td>
+            <td>@(judge?.FullName ?? "Not Assigned")</td>
+            <td>@c.FiledDate.ToString("dd MMM yyyy")</td>
+        </tr>
+    }
+    </tbody>
+</table>

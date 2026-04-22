@@ -1,0 +1,37 @@
+@model List<CourtCaseManagementSystem.Core.Entities.CaseEvent>
+
+<h1 class="h3 mb-4 text-gray-800">Case History</h1>
+
+@if (Model.Count == 0)
+{
+    <p>No case activity available.</p>
+}
+else
+{
+    <table class="table table-bordered">
+
+        <thead>
+        <tr>
+            <th>Case</th>
+            <th>Event</th>
+            <th>Description</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        @foreach (var e in Model)
+        {
+            <tr>
+                <td>@e.Case?.CaseNumber</td>
+                <td>@e.EventType</td>
+                <td>@e.Description</td>
+                <td>@e.EventDate.ToString("dd MMM yyyy")</td>
+            </tr>
+        }
+
+        </tbody>
+
+    </table>
+}

@@ -30,4 +30,10 @@ public class Case
     public ICollection<JudgeAssignment>? JudgeAssignments { get; set; }
     
     public Judgment? Judgment { get; set; }
+    
+    public ICollection<Application>? Applications { get; set; }
+    
+    public FIR? FIR { get; set; }
+    public ChargeSheet? ChargeSheet { get; set; }
+    public ICollection<CaseLawyer> CaseLawyers { get; set; }
 }

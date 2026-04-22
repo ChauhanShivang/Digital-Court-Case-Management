@@ -13,6 +13,41 @@ public class JudgmentController : BaseController
     {
         _context = context;
     }
+    
+    public async Task<IActionResult> Index(string? search, string? sort)
+    {
+        var userId = HttpContext.Session.GetInt32("UserId");
+
+        var query = _context.Judgments
+            .Include(j => j.Case)
+            .Where(j => j.JudgeId == userId)
+            .AsQueryable();
+
+        // 🔍 SEARCH
+        if (!string.IsNullOrEmpty(search))
+        {
+            query = query.Where(j =>
+                j.Case.CaseNumber.Contains(search) ||
+                j.Case.Title.Contains(search));
+        }
+
+        // ↕ SORT
+        if (string.IsNullOrEmpty(sort))
+            sort = "latest";
+
+        if (sort == "latest")
+            query = query.OrderByDescending(j => j.CreatedAt);
+
+        else if (sort == "oldest")
+            query = query.OrderBy(j => j.CreatedAt);
+
+        var drafts = await query.ToListAsync();
+
+        ViewBag.Search = search;
+        ViewBag.Sort = sort;
+
+        return View(drafts);
+    }
 
     public async Task<IActionResult> Create(int caseId)
     {
@@ -56,16 +91,37 @@ public class JudgmentController : BaseController
     [HttpPost]
     public async Task<IActionResult> Edit(Judgment model)
     {
-        var judgment = await _context.Judgments.FindAsync(model.Id);
+        var existing = await _context.Judgments
+            .Include(j => j.Case)
+            .FirstOrDefaultAsync(j => j.Id == model.Id);
 
-        if (judgment == null)
+        if (existing == null)
             return NotFound();
 
-        judgment.Content = model.Content;
+        existing.Content = model.Content;
+        existing.Status = model.Status;
+
+// ✅ WHEN JUDGMENT DELIVERED → CLOSE CASE
+        if (model.Status == "Delivered")
+        {
+            existing.FinalizedAt = DateTime.UtcNow;
+
+            if (existing.Case != null)
+            {
+                existing.Case.Status = "Closed"; // 🔥 THIS LINE FIXES EVERYTHING
+            }
+
+            _context.CaseEvents.Add(new CaseEvent
+            {
+                CaseId = existing.CaseId,
+                EventType = "Case Closed",
+                Description = "Case closed after final judgment."
+            });
+        }
 
         await _context.SaveChangesAsync();
 
-        return RedirectToAction("Details", "Case", new { id = judgment.CaseId });
+        return RedirectToAction("Details", "Case", new { id = existing.CaseId });
     }
     
     public async Task<IActionResult> Finalize(int id)
@@ -93,5 +149,23 @@ public class JudgmentController : BaseController
         await _context.SaveChangesAsync();
 
         return RedirectToAction("Details", "Case", new { id = judgment.CaseId });
+    }
+    
+    public async Task<IActionResult> Download(int id)
+    {
+        var judgment = await _context.Judgments
+            .Include(j => j.Case)
+            .FirstOrDefaultAsync(j => j.Id == id);
+
+        if (judgment == null)
+            return NotFound();
+
+        var content = $"Case: {judgment.Case?.CaseNumber}\n\n" +
+                      $"Judgment:\n{judgment.Content}\n\n" +
+                      $"Status: {judgment.Status}";
+
+        var bytes = System.Text.Encoding.UTF8.GetBytes(content);
+
+        return File(bytes, "text/plain", "Judgment.txt");
     }
 }

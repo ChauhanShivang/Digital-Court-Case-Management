@@ -845,6 +845,9 @@
         }
       },
       "CourtCaseManagementSystem.Core/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0"
+        },
         "runtime": {
           "CourtCaseManagementSystem.Core.dll": {
             "assemblyVersion": "1.0.0",

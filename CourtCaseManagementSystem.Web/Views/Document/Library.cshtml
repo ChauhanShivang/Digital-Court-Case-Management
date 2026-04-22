@@ -1,37 +1,51 @@
-@{
-    ViewData["Title"] = "Documents Library";
-}
+@model List<CourtCaseManagementSystem.Core.Entities.Document>
 
-<h1 class="h3 mb-4 text-gray-800">Documents Library</h1>
+<h1 class="h3 mb-4 text-gray-800">Document Library</h1>
 
-<div class="card shadow mb-4">
-    <div class="card-body">
-        <table class="table table-bordered">
-            <thead>
+<table class="table table-bordered">
+
+    <thead>
+    <tr>
+        <th>Case No</th>
+        <th>Document</th>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    @if (Model.Count == 0)
+    {
+        <tr>
+            <td colspan="5" class="text-center">
+                No documents available
+            </td>
+        </tr>
+    }
+    else
+    {
+        foreach (var doc in Model)
+        {
             <tr>
-                <th>Document Name</th>
-                <th>Case No</th>
-                <th>Type</th>
-                <th>Date Uploaded</th>
-                <th>Action</th>
+                <td>@doc.Case?.CaseNumber</td>
+                <td>@doc.FileName</td>
+                <td>@doc.DocumentType</td>
+                <td>@doc.UploadedAt.ToString("dd MMM yyyy")</td>
+
+                <td>
+                    <a asp-controller="Document"
+                       asp-action="Download"
+                       asp-route-id="@doc.Id"
+                       class="btn btn-sm btn-primary">
+                        Download
+                    </a>
+                </td>
             </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Affidavit_01.pdf</td>
-                <td>CC-2026-215</td>
-                <td>Affidavit</td>
-                <td>15 Jan 2026</td>
-                <td><button class="btn btn-sm btn-primary">Download</button></td>
-            </tr>
-            <tr>
-                <td>Evidence_Land.pdf</td>
-                <td>CC-2026-198</td>
-                <td>Evidence</td>
-                <td>30 Jan 2026</td>
-                <td><button class="btn btn-sm btn-primary">Download</button></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+        }
+    }
+
+    </tbody>
+
+</table>

@@ -20,9 +20,17 @@ public class DocumentController : Controller
         return View();
     }
     
-    public IActionResult Library()
+    public async Task<IActionResult> Library()
     {
-        return View();
+        var userId = HttpContext.Session.GetInt32("UserId");
+
+        var documents = await _context.Documents
+            .Include(d => d.Case)
+            .Where(d => d.Case.LawyerId == userId)
+            .OrderByDescending(d => d.UploadedAt)
+            .ToListAsync();
+
+        return View(documents);
     }
 
     [HttpPost]
@@ -42,12 +50,25 @@ public class DocumentController : Controller
 
         var randomName = Guid.NewGuid().ToString() + extension;
 
-        var path = Path.Combine("Storage/Documents", randomName);
+        var folder = Path.Combine(
+            Directory.GetCurrentDirectory(),
+            "Storage",
+            "Documents"
+        );
+
+        if (!Directory.Exists(folder))
+        {
+            Directory.CreateDirectory(folder);
+        }
+
+        var path = Path.Combine(folder, randomName);
 
         using (var stream = new FileStream(path, FileMode.Create))
         {
             await file.CopyToAsync(stream);
         }
+        
+        var isVakalatnama = documentType == "Vakalatnama";
 
         var userId = HttpContext.Session.GetInt32("UserId");
 
@@ -58,10 +79,20 @@ public class DocumentController : Controller
             FileName = file.FileName,
             StoredFileName = randomName,
             FilePath = path,
-            DocumentType = documentType
+            DocumentType = documentType,
+            IsVakalatnama = isVakalatnama
         };
 
         _context.Documents.Add(document);
+        await _context.SaveChangesAsync();
+        
+        _context.CaseEvents.Add(new CaseEvent
+        {
+            CaseId = caseId,
+            EventType = "Document Uploaded",
+            Description = $"Document '{file.FileName}' uploaded."
+        });
+
         await _context.SaveChangesAsync();
 
         return RedirectToAction("Details", "Case", new { id = caseId });
@@ -87,6 +118,17 @@ public class DocumentController : Controller
 
         if (userRole == "Lawyer" && document.Case?.LawyerId == userId)
             authorized = true;
+        
+        if (userRole == "Lawyer")
+        {
+            var hasVakalatnama = await _context.Documents
+                .AnyAsync(d => d.CaseId == document.CaseId 
+                               && d.IsVakalatnama 
+                               && d.UploadedByUserId == userId);
+
+            if (!hasVakalatnama)
+                return Forbid("Upload Vakalatnama first.");
+        }
 
         if (userRole == "Judge")
         {
@@ -97,7 +139,17 @@ public class DocumentController : Controller
         if (!authorized)
             return Forbid();
 
-        var path = Path.Combine("Storage/Documents", document.StoredFileName);
+        var path = Path.Combine(
+            Directory.GetCurrentDirectory(),
+            "Storage",
+            "Documents",
+            document.StoredFileName
+        );
+
+        if (!System.IO.File.Exists(path))
+        {
+            return NotFound("File not found on server.");
+        }
 
         var bytes = await System.IO.File.ReadAllBytesAsync(path);
 

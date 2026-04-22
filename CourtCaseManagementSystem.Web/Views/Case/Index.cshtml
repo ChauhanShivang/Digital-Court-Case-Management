@@ -41,6 +41,10 @@
                         {
                             <span class="badge badge-info">Registered</span>
                         }
+                        else if (c.Status == "Scheduled")
+                        {
+                            <span class="badge badge-primary">Scheduled</span>
+                        }
                         else if (c.Status == "Active")
                         {
                             <span class="badge badge-warning">Active</span>
@@ -48,6 +52,10 @@
                         else if (c.Status == "Closed")
                         {
                             <span class="badge badge-success">Closed</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-secondary">@c.Status</span>
                         }
                     </td>
                     @if (Context.Session.GetString("UserRole") == "Clerk")

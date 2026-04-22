@@ -1,0 +1,113 @@
+@model List<CourtCaseManagementSystem.Core.Entities.Case>
+
+<h1 class="h3 mb-4 text-gray-800">Case Registry</h1>
+
+<div class="mb-3">
+
+    <strong>Sort By:</strong>
+
+    <a asp-action="CaseRegistry"
+       asp-route-sort="latest"
+       class="btn btn-sm btn-outline-primary">
+        Latest
+    </a>
+
+    <a asp-action="CaseRegistry"
+       asp-route-sort="oldest"
+       class="btn btn-sm btn-outline-secondary">
+        Oldest
+    </a>
+
+    <a asp-action="CaseRegistry"
+       asp-route-sort="priority"
+       class="btn btn-sm btn-outline-success">
+        Priority
+    </a>
+
+</div>
+
+<form method="get" class="mb-3">
+
+    <div class="row">
+
+        <!-- 🔍 SEARCH -->
+        <div class="col-md-4">
+            <input type="text" name="search"
+                   value="@ViewBag.Search"
+                   class="form-control"
+                   placeholder="Search case..." />
+        </div>
+
+        <!-- 🎯 FILTER -->
+        <div class="col-md-3">
+            <select name="filter" class="form-control">
+                <option value="">All</option>
+                <option value="pending" selected="@(ViewBag.Filter == "pending")">Pending</option>
+                <option value="closed" selected="@(ViewBag.Filter == "closed")">Closed</option>
+            </select>
+        </div>
+
+        <!-- ↕ SORT -->
+        <div class="col-md-3">
+            <select name="sort" class="form-control">
+                <option value="latest" selected="@(ViewBag.Sort == "latest")">Latest</option>
+                <option value="oldest" selected="@(ViewBag.Sort == "oldest")">Oldest</option>
+                <option value="priority" selected="@(ViewBag.Sort == "priority")">Priority</option>
+            </select>
+        </div>
+
+        <!-- BUTTON -->
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">Apply</button>
+        </div>
+
+    </div>
+
+</form>
+
+<table class="table table-bordered">
+
+    <thead>
+    <tr>
+        <th>Case No</th>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Court</th>
+        <th>Lawyer</th>
+        <th>Status</th>
+        <th>Police Records</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.CaseNumber</td>
+            <td>@c.Title</td>
+            <td>@c.CaseType</td>
+            <td>@c.Court?.Name</td>
+            <td>@c.Lawyer?.FullName</td>
+            <td>@c.Status</td>
+            <td>
+                <a asp-controller="FIR"
+                   asp-action="Create"
+                   asp-route-caseId="@c.Id"
+                   class="btn btn-sm btn-outline-primary">
+                    FIR
+                </a>
+
+                <a asp-controller="ChargeSheet"
+                   asp-action="Create"
+                   asp-route-caseId="@c.Id"
+                   class="btn btn-sm btn-outline-success mt-1">
+                    ChargeSheet
+                </a>
+            </td>
+        </tr>
+    }
+
+    </tbody>
+
+</table>

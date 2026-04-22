@@ -8,6 +8,7 @@
 
 <form method="post">
 
+    <!-- Case Info -->
     <div class="form-group">
         <label>Case Number</label>
         <input asp-for="CaseNumber" class="form-control" required />
@@ -31,22 +32,36 @@
         <textarea asp-for="Description" class="form-control"></textarea>
     </div>
 
+    <!-- Court -->
     <div class="form-group mt-3">
         <label>Court</label>
-        <select asp-for="CourtId" class="form-control">
-            @foreach (var court in ViewBag.Courts)
+        <input type="text" id="courtSearch" class="form-control" placeholder="Search Court..." />
+
+        <select name="CourtId" id="courtList" class="form-control mt-2">
+            @foreach (var c in ViewBag.Courts)
             {
-                <option value="@court.Id">@court.Name</option>
+                <option value="@c.Id">@c.Name</option>
+            }
+        </select>
+    </div>
+
+    <!-- 🔥 MULTIPLE LAWYERS -->
+    <div class="form-group mt-3">
+        <label>Petitioner Lawyer</label>
+        <select name="PetitionerLawyerId" class="form-control">
+            @foreach (var l in ViewBag.Lawyers)
+            {
+                <option value="@l.Id">@l.FullName</option>
             }
         </select>
     </div>
 
     <div class="form-group mt-3">
-        <label>Assign Lawyer</label>
-        <select asp-for="LawyerId" class="form-control">
-            @foreach (var lawyer in ViewBag.Lawyers)
+        <label>Respondent Lawyer</label>
+        <select name="RespondentLawyerId" class="form-control">
+            @foreach (var l in ViewBag.Lawyers)
             {
-                <option value="@lawyer.Id">@lawyer.FullName</option>
+                <option value="@l.Id">@l.FullName</option>
             }
         </select>
     </div>
@@ -55,3 +70,16 @@
         Register Case
     </button>
 </form>
+
+<script>
+// Court search only
+document.getElementById("courtSearch").addEventListener("keyup", function () {
+    let filter = this.value.toLowerCase();
+    let options = document.getElementById("courtList").options;
+
+    for (let i = 0; i < options.length; i++) {
+        let text = options[i].text.toLowerCase();
+        options[i].style.display = text.includes(filter) ? "" : "none";
+    }
+});
+</script>

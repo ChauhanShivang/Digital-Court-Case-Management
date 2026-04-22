@@ -1,8 +1,10 @@
-@{
-    ViewData["Title"] = "Courts Management";
-}
+@model List<CourtCaseManagementSystem.Core.Entities.Court>
 
 <h1 class="h3 mb-4 text-gray-800">Courts Management</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3">
+    Add Court
+</a>
 
 <div class="card shadow mb-4">
     <div class="card-body">
@@ -10,31 +12,19 @@
             <thead>
             <tr>
                 <th>Court Name</th>
-                <th>Type</th>
                 <th>Location</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th>Type</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Surat District Court</td>
-                <td>District Court</td>
-                <td>Surat</td>
-                <td><span class="badge badge-success">Active</span></td>
-                <td>
-                    <button class="btn btn-sm btn-danger">Deactivate</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Gujarat High Court</td>
-                <td>High Court</td>
-                <td>Ahmedabad</td>
-                <td><span class="badge badge-secondary">Inactive</span></td>
-                <td>
-                    <button class="btn btn-sm btn-success">Activate</button>
-                </td>
-            </tr>
+            @foreach(var c in Model)
+            {
+                <tr>
+                    <td>@c.Name</td>
+                    <td>@c.Location</td>
+                    <td>@c.CourtType</td>
+                </tr>
+            }
             </tbody>
         </table>
     </div>

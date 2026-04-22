@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "WUjFsQmMtyI=",
+  "dgSpecHash": "7CblVC2t9Pw=",
   "success": true,
   "projectFilePath": "/Users/shivang/Documents/Project (Sem 8 - FSEP)/CourtCaseManagementSystem/CourtCaseManagementSystem.Core/CourtCaseManagementSystem.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/shivang/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "/Users/shivang/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

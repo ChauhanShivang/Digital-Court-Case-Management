@@ -1,0 +1,22 @@
+@model CourtCaseManagementSystem.Core.Entities.Application
+
+<h2>Add Application</h2>
+
+<form method="post">
+
+    <input type="hidden" name="CaseId" value="@Model.CaseId" />
+
+    <div class="form-group">
+        <label>Application Type</label>
+        <select asp-for="Type" class="form-control">
+            <option>Bail</option>
+            <option>Stay Order</option>
+            <option>Injunction</option>
+            <option>Exemption</option>
+            <option>Other</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary mt-3">Submit</button>
+
+</form>

@@ -1,3 +1,4 @@
+@using System.Linq
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -16,7 +17,16 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Total Cases</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">128</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <a asp-controller="Case"
+                               asp-action="List"
+                               asp-route-filter="total"
+                               class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                @ViewBag.TotalCases
+
+                            </a>
+                        </div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-folder-open fa-2x text-gray-300"></i>
@@ -32,8 +42,18 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Pending Hearings</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">24</div>
+                            Pending Cases</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <a asp-controller="Case"
+                               asp-action="List"
+                               asp-route-filter="pending"
+                               asp-route-sort="latest"
+                               class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                @ViewBag.PendingCases
+
+                            </a>
+                        </div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar-alt fa-2x text-gray-300"></i>
@@ -50,7 +70,16 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Closed Cases</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">89</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <a asp-controller="Case"
+                               asp-action="List"
+                               asp-route-filter="closed"
+                               class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                @ViewBag.ClosedCases
+
+                            </a>
+                        </div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-check-circle fa-2x text-gray-300"></i>
@@ -68,7 +97,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Upcoming Hearings</h6>
-                <a href="#" class="text-primary">View All</a>
+                <a asp-controller="Hearing" asp-action="Index" class="text-primary">View All</a>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -82,24 +111,39 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>CC-2026-104</td>
-                            <td>Hon. Justice A. Shah</td>
-                            <td>22 Feb 2026</td>
-                            <td><span class="badge badge-warning">Scheduled</span></td>
-                        </tr>
-                        <tr>
-                            <td>CC-2026-091</td>
-                            <td>Hon. Justice R. Mehta</td>
-                            <td>28 Feb 2026</td>
-                            <td><span class="badge badge-info">Awaiting</span></td>
-                        </tr>
-                        <tr>
-                            <td>CC-2026-078</td>
-                            <td>Hon. Justice S. Iyer</td>
-                            <td>04 Mar 2026</td>
-                            <td><span class="badge badge-success">Completed</span></td>
-                        </tr>
+
+                        @if (ViewBag.UpcomingHearings != null && ViewBag.UpcomingHearings.Count > 0)
+                        {
+                            foreach (var h in ViewBag.UpcomingHearings)
+                            {
+                                <tr>
+                                    <td>
+                                        <a asp-controller="Case"
+                                           asp-action="Details"
+                                           asp-route-id="@h.Case?.Id">
+                                            @h.Case?.CaseNumber
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @foreach (var j in h.Case?.JudgeAssignments ?? new List<dynamic>())
+                                        {
+                                            @j.Judge?.FullName
+                                        }
+                                    </td>
+                                    <td>@h.HearingDate.ToString("dd MMM yyyy")</td>
+                                    <td>
+                                        <span class="badge badge-warning">@h.Status</span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center">No hearings scheduled</td>
+                            </tr>
+                        }
+
                         </tbody>
                     </table>
                 </div>

@@ -1,0 +1,29 @@
+@model CourtCaseManagementSystem.Core.Entities.FIR
+
+<h2>Add FIR</h2>
+
+<form method="post">
+
+    <label>Filed By</label>
+    <input class="form-control" value="Police Station" disabled />
+    
+    <input type="hidden" name="CaseId" value="@ViewBag.CaseId" />
+
+    <div class="form-group">
+        <label>FIR Number</label>
+        <input name="FIRNumber" class="form-control" required />
+    </div>
+
+    <div class="form-group mt-2">
+        <label>Police Station</label>
+        <input name="PoliceStation" class="form-control" required />
+    </div>
+
+    <div class="form-group mt-2">
+        <label>Description</label>
+        <textarea name="Description" class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-primary mt-3">Save FIR</button>
+
+</form>

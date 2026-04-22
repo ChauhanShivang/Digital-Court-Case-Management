@@ -1,18 +1,43 @@
 @model List<CourtCaseManagementSystem.Core.Entities.CaseEvent>
 
-<h2>Case Timeline</h2>
+<h1 class="h3 mb-4 text-gray-800">Case Timeline</h1>
 
-<ul class="timeline">
+<form method="get" class="mb-3">
+    <input type="text" name="search"
+           value="@ViewBag.Search"
+           class="form-control"
+           placeholder="Search events..." />
+</form>
 
-    @foreach (var e in Model)
-    {
-        <li class="mb-3">
-            <strong>@e.EventType</strong><br/>
-            @e.Description<br/>
-            <small class="text-muted">
-                @e.EventDate.ToString("dd MMM yyyy HH:mm")
-            </small>
-        </li>
-    }
+<div class="card shadow">
+    <div class="card-body">
 
-</ul>
+        <table class="table table-bordered">
+
+            <thead>
+            <tr>
+                <th>Case No</th>
+                <th>Event</th>
+                <th>Description</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            @foreach (var e in Model)
+            {
+                <tr>
+                    <td>@e.Case?.CaseNumber</td>
+                    <td>@e.EventType</td>
+                    <td>@e.Description</td>
+                    <td>@e.EventDate.ToString("dd MMM yyyy")</td>
+                </tr>
+            }
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

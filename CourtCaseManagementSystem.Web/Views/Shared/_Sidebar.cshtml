@@ -39,7 +39,7 @@
         <hr class="sidebar-divider my-0" />
         
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Hearing" asp-action="Upcoming">
+            <a class="nav-link" asp-controller="Lawyer" asp-action="UpcomingHearings">
                 <i class="fas fa-calendar-alt"></i>
                 <span>Upcoming Hearings</span>
             </a>
@@ -57,7 +57,7 @@
         <hr class="sidebar-divider my-0" />
 
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Case" asp-action="History">
+            <a class="nav-link" asp-controller="Lawyer" asp-action="CaseHistory">
                 <i class="fas fa-archive"></i>
                 <span>Case History</span>
             </a>
@@ -77,7 +77,7 @@
         <hr class="sidebar-divider my-0" />
         
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Case" asp-action="Registery">
+            <a class="nav-link" asp-controller="Clerk" asp-action="CaseRegistry">
                 <i class="fas fa-book"></i>
                 <span>Case Registry</span>
             </a>
@@ -86,16 +86,16 @@
         <hr class="sidebar-divider my-0" />
 
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Assignment" asp-action="Index">
+            <a class="nav-link" asp-controller="Case" asp-action="Allocation">
                 <i class="fas fa-user-tie"></i>
-                <span>Assign Judge</span>
+                <span>Case Allocation</span>
             </a>
         </li>
         
         <hr class="sidebar-divider my-0" />
 
         <li class="nav-item">
-            <a class="nav-link" asp-controller="CauseList" asp-action="Index">
+            <a class="nav-link" asp-controller="Clerk" asp-action="DailyCauseList">
                 <i class="fas fa-list"></i>
                 <span>Daily Cause List</span>
             </a>
@@ -124,9 +124,18 @@
         <hr class="sidebar-divider my-0" />
 
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Judge" asp-action="JudgmentDrafts">
+            <a class="nav-link" asp-controller="Judgment" asp-action="Index">
                 <i class="fas fa-gavel"></i>
                 <span>Judgment Drafts</span>
+            </a>
+        </li>
+        
+        <hr class="sidebar-divider my-0" />
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Adjournment" asp-action="Index">
+                <i class="fas fa-clock"></i>
+                <span>Adjournment Requests</span>
             </a>
         </li>
         
